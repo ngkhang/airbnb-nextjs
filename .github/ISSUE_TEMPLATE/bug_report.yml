@@ -1,0 +1,84 @@
+name: Bug Report
+description: Create a report to help us improve.
+title: "[bug]: "
+labels: [❌ bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Description
+
+        > Provide a clear and concise description of what the bug is.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe the bug in detail.
+      placeholder: Describe the bug here.
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Steps to Reproduce
+
+        > List the steps needed to reproduce the issue.
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: List the steps to reproduce the bug.
+      placeholder: "1. Step 1\n2. Step 2\n3. Step 3"
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Actual Behavior
+
+        > Describe what actually happened.
+
+  - type: textarea
+    id: actual_behavior
+    attributes:
+      label: Actual Behavior
+      description: Describe the actual behavior.
+      placeholder: What actually happened?
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Screenshots
+
+        > If applicable, add screenshots to help explain your problem.
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: Provide links to screenshots or attach them.
+      placeholder: Add screenshots here.
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Additional Context
+
+        > Add any other context about the problem here.
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional Context
+      description: Provide any additional context or information.
+      placeholder: Additional context here.
+    validations:
+      required: false
