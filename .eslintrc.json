@@ -1,3 +1,75 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript"]
+  "extends": [
+    "eslint:recommended",
+    "next/core-web-vitals",
+    "next/typescript",
+    "prettier",
+    "plugin:import/recommended"
+  ],
+  "rules": {
+    // eslint-plugin-import
+    "import/export": "error",
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          ["parent", "sibling"],
+          "index",
+          "object"
+        ],
+        "newlines-between": "always",
+        "pathGroups": [
+          {
+            "pattern": "@app/**",
+            "group": "external",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["builtin"],
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ],
+    // typescript-eslint
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/no-empty-object-type": [
+      2,
+      {
+        "allowInterfaces": "with-single-extends"
+      }
+    ],
+    // ESLint
+    "arrow-body-style": [
+      2,
+      "as-needed",
+      {
+        "requireReturnForObjectLiteral": true
+      }
+    ],
+    "consistent-return": 0,
+    "no-unused-vars": [
+      1,
+      {
+        "args": "after-used",
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    "no-console": 1,
+    "no-lonely-if": 1,
+    "no-undefined": 2,
+    "no-nested-ternary": 1,
+    "no-unexpected-multiline": "warn",
+    "prefer-const": 2
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "parser": "@typescript-eslint/parser"
+    }
+  ]
 }

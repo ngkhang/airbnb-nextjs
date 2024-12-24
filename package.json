@@ -10,22 +10,43 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:debug": "eslint ./src --debug",
+    "lint:fix": "eslint ./src --fix",
+    "prepare": "husky || true",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,css,scss,md}\"",
+    "format:fix": "prettier --write \"**/*.{js,jsx,ts,tsx,css,scss,md}\"",
+    "commit": "cz"
   },
   "dependencies": {
+    "next": "14.2.21",
     "react": "^18",
-    "react-dom": "^18",
-    "next": "14.2.21"
+    "react-dom": "^18"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@commitlint/cli": "^19.6.1",
+    "@commitlint/config-conventional": "^19.6.0",
+    "@commitlint/cz-commitlint": "^19.6.1",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
+    "commitizen": "^4.3.1",
     "eslint": "^8",
-    "eslint-config-next": "14.2.21"
+    "eslint-config-next": "14.2.21",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.31.0",
+    "husky": "^9.1.7",
+    "inquirer": "^9.3.7",
+    "lint-staged": "^15.2.11",
+    "postcss": "^8",
+    "prettier": "^3.4.2",
+    "prettier-plugin-tailwindcss": "^0.6.9",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
+  },
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/cz-commitlint"
+    }
   }
 }
-
