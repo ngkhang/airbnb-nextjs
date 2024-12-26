@@ -72,6 +72,6 @@
     @apply h-full;
   }
   body {
-    @apply h-full bg-background font-airbnb text-foreground;
+    @apply h-full min-h-screen bg-background font-airbnb text-foreground;
   }
 }

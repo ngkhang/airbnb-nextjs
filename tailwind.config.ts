@@ -12,9 +12,9 @@ const config: Config = {
     container: {
       center: true,
       padding: {
-        DEFAULT: '1.5rem',
-        md: '2.5rem',
-        '2xl': '5rem',
+        DEFAULT: '1.5rem', // 24px
+        md: '2.5rem', // 40px
+        '2xl': '5rem', // 80px
       },
     },
     extend: {
@@ -27,6 +27,7 @@ const config: Config = {
         '2xl': '1440px',
         '3xl': '1640px',
         '4xl': '1880px',
+        '5xl': '2560px',
       },
       fontFamily: {
         airbnb: ['var(--font-airbnb)'],
@@ -83,4 +84,3 @@ const config: Config = {
   plugins: [TailwindAnimate],
 };
 export default config;
-
