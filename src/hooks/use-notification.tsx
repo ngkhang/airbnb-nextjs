@@ -9,12 +9,13 @@ import {
 } from 'react-toastify';
 
 type NotificationFunction = (
-  content?: ToastContent,
+  content: ToastContent,
   options?: ToastOptions
 ) => void;
 
 interface NotificationHookResult {
   show: NotificationFunction;
+  loading: NotificationFunction;
   update: NotificationFunction;
   isLoading: boolean;
 }
@@ -31,16 +32,30 @@ export default function useNotification(): NotificationHookResult {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   /**
+   * Shows notification with content
+   *
+   * @param content - Message to display in the toast
+   * @param options - Additional toast options
+   */
+  const show: NotificationFunction = (content, options): void => {
+    toast(content, {
+      type: 'default',
+      hideProgressBar: true,
+      isLoading: false,
+      ...options,
+    });
+  };
+
+  /**
    * Shows a loading toast notification
    *
    * @param content - Message to display in the toast
    * @param options - Additional toast options
    */
-  const show: NotificationFunction = (
+  const loading: NotificationFunction = (
     content = 'Loading...',
-    options = {}
+    options
   ): void => {
-    // If there's an existing toast, update it to error state
     if (toastId.current && isLoading) {
       toast.update(toastId.current, {
         render: 'Previous operation cancelled',
@@ -52,7 +67,7 @@ export default function useNotification(): NotificationHookResult {
 
     setIsLoading(true);
     toastId.current = toast.loading(content, {
-      type: 'default',
+      type: 'info',
       autoClose: false,
       closeButton: false,
       ...options,
@@ -65,9 +80,9 @@ export default function useNotification(): NotificationHookResult {
    * @param content  New message to display
    * @param options - Additional toast options
    */
-  const update = (
-    content: ToastContent = 'Success full',
-    options: ToastOptions = {}
+  const update: NotificationFunction = (
+    content = 'Successful!',
+    options
   ): void => {
     if (!toastId.current) return;
 
@@ -87,6 +102,7 @@ export default function useNotification(): NotificationHookResult {
 
   return {
     show,
+    loading,
     update,
     isLoading,
   };
