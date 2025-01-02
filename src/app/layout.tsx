@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
 import '../assets/styles/globals.css';
+import Notification from '@/components/notification';
 import { airbnb } from '@/lib/fonts';
 
 export const metadata: Metadata = {
@@ -15,7 +16,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={airbnb.variable}>{children}</body>
+      <body className={airbnb.variable}>
+        {children}
+
+        {/* React-Toastify */}
+        <Notification />
+      </body>
     </html>
   );
 }
