@@ -79,6 +79,10 @@ const config: Config = {
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
+      backgroundImage: {
+        linear:
+          'linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%)',
+      },
     },
   },
   plugins: [TailwindAnimate],
