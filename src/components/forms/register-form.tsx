@@ -1,20 +1,38 @@
 'use client';
-
-import Link from 'next/link';
-
-import { PasswordInput } from '@/components/password-input';
 import { Button } from '@/components/ui/button';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
+import { Form } from '@/components/ui/form';
 import useZodForm from '@/hooks/use-zod-form';
 import { RegisterSchema, type RegisterFormType } from '@/schemas/auth.schema';
+
+import FormFieldComponent from './form-field';
+import type { FieldConfig } from './form.type';
+
+const registerFields: FieldConfig<typeof RegisterSchema>[] = [
+  {
+    key: 0,
+    name: 'email',
+    label: 'Email',
+    required: true,
+    type: 'email',
+    placeholder: 'm@example.com',
+  },
+  {
+    key: 1,
+    name: 'name',
+    label: 'Full name',
+    required: true,
+    type: 'text',
+    placeholder: '',
+  },
+  {
+    key: 2,
+    name: 'password',
+    label: 'Password',
+    required: true,
+    type: 'password',
+    placeholder: '******',
+  },
+];
 
 export default function RegisterForm() {
   const form = useZodForm(RegisterSchema, {
@@ -39,75 +57,9 @@ export default function RegisterForm() {
         onSubmit={form.handleSubmit(onSubmit)}
         className='flex flex-col gap-6'
       >
-        <FormField
-          control={form.control}
-          name='email'
-          render={({ field }) => (
-            <FormItem className=''>
-              <FormLabel className='text-inherit'>
-                Email <span className='text-sm text-red-500'>*</span>
-              </FormLabel>
-              <FormControl>
-                <Input placeholder='m@example.com' {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name='name'
-          render={({ field }) => (
-            <FormItem className=''>
-              <FormLabel className='text-inherit'>
-                Full name <span className='text-sm text-red-500'>*</span>
-              </FormLabel>
-              <FormControl>
-                <Input placeholder='' {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name='password'
-          render={({ field }) => (
-            <FormItem className=''>
-              <div className='flex items-center justify-between'>
-                <FormLabel className='text-inherit'>
-                  Password <span className='text-sm text-red-500'>*</span>
-                </FormLabel>
-                <Link
-                  href='#'
-                  className='text-xs underline-offset-2 hover:underline'
-                >
-                  Forgot your password?
-                </Link>
-              </div>
-              <FormControl>
-                <PasswordInput placeholder='******' {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name='role'
-          render={({ field }) => (
-            <FormItem className='hidden'>
-              <FormLabel className='text-inherit'>Role</FormLabel>
-              <FormControl>
-                <Input placeholder='' {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        {registerFields.map((item) => (
+          <FormFieldComponent key={item.key} form={form} config={{ ...item }} />
+        ))}
 
         <Button
           type='submit'

@@ -1,18 +1,33 @@
+'use client';
+
 import React from 'react';
 
-import { PasswordInput } from '@/components/password-input';
 import { Button } from '@/components/ui/button';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
+import { Form } from '@/components/ui/form';
 import useZodForm from '@/hooks/use-zod-form';
 import { LoginSchema, type LoginFormType } from '@/schemas/auth.schema';
+
+import FormFieldComponent from './form-field';
+import type { FieldConfig } from './form.type';
+
+const loginFields: FieldConfig<typeof LoginSchema>[] = [
+  {
+    key: 0,
+    name: 'email',
+    label: 'Email',
+    required: true,
+    type: 'email',
+    placeholder: 'm@example.com',
+  },
+  {
+    key: 1,
+    name: 'password',
+    label: 'Password',
+    required: true,
+    type: 'password',
+    placeholder: '******',
+  },
+];
 
 export default function LoginForm() {
   const form = useZodForm(LoginSchema, {
@@ -35,33 +50,9 @@ export default function LoginForm() {
         onSubmit={form.handleSubmit(onSubmit)}
         className='flex flex-col gap-6'
       >
-        <FormField
-          control={form.control}
-          name='email'
-          render={({ field }) => (
-            <FormItem className='grid gap-2'>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input placeholder='m@example.com' {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name='password'
-          render={({ field }) => (
-            <FormItem className='grid gap-2'>
-              <FormLabel>Password</FormLabel>
-              <FormControl>
-                <PasswordInput placeholder='******' {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        {loginFields.map((item) => (
+          <FormFieldComponent key={item.key} form={form} config={{ ...item }} />
+        ))}
         <Button
           type='submit'
           className='w-full bg-[#FF385C] transition-colors hover:bg-linear'

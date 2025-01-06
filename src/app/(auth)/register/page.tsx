@@ -6,18 +6,10 @@ import React from 'react';
 
 import RegisterForm from '@/components/forms/register-form';
 import AirbnbSymbol from '@/components/icons/airbnb-symbol';
-import Apple from '@/components/icons/apple';
-import Google from '@/components/icons/google';
-import Meta from '@/components/icons/meta';
-import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import ROUTES from '@/constants/routes';
 
-const iconAuth = {
-  Google: <Google />,
-  Apple: <Apple />,
-  Meta: <Meta />,
-} as const;
+import { AuthFooter, ThirdAuth } from '../_component';
 
 const contentRegisterPage = {
   metaData: {
@@ -30,31 +22,6 @@ const contentRegisterPage = {
     switch: {
       title: 'Login',
       subTitle: 'Already registered?',
-    },
-    thirdAuth: {
-      title: 'or',
-      items: [
-        {
-          key: 0,
-          icon: 'Apple',
-          srOnly: 'Login with Apple',
-        },
-        {
-          key: 1,
-          icon: 'Google',
-          srOnly: 'Login with Google',
-        },
-        {
-          key: 2,
-          icon: 'Meta',
-          srOnly: 'Login with Meta',
-        },
-      ],
-    },
-    footer: {
-      title:
-        "We'll call or text you to confirm your number. Standard message and data rates apply.",
-      policy: 'Privacy Policy',
     },
   },
 };
@@ -85,7 +52,10 @@ export default function RegisterPage() {
                 <span className='mr-1 hidden lg:inline-block'>
                   {page.switch.subTitle}
                 </span>
-                <Link href={ROUTES.AUTH.LOGIN} className='no-underline'>
+                <Link
+                  href={ROUTES.AUTH.LOGIN}
+                  className='underline underline-offset-4'
+                >
                   {page.switch.title}
                 </Link>
               </div>
@@ -102,30 +72,12 @@ export default function RegisterPage() {
               <RegisterForm />
 
               {/* Auth for third-library */}
-              <div className='grid gap-3'>
-                <div className='relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border'>
-                  <span className='relative z-10 bg-background px-2 text-muted-foreground'>
-                    {page.thirdAuth.title}
-                  </span>
-                </div>
-                <div className='grid grid-cols-3 gap-4'>
-                  {page.thirdAuth.items.map((item) => (
-                    <Button key={item.key} variant='outline' className='w-full'>
-                      {iconAuth[item.icon as keyof typeof iconAuth]}
-                      <span className='sr-only'>{item.srOnly}</span>
-                    </Button>
-                  ))}
-                </div>
-              </div>
+              <ThirdAuth className='gap-3' />
             </div>
           </CardContent>
         </Card>
 
-        <div className='text-balance text-center text-xs text-muted-foreground [&_span]:cursor-pointer [&_span]:underline [&_span]:underline-offset-4 hover:[&_span]:text-primary'>
-          <p>
-            {page.footer.title} <span>{page.footer.policy}</span>
-          </p>
-        </div>
+        <AuthFooter />
       </div>
     </div>
   );
