@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 
 import '../assets/styles/globals.css';
 import Notification from '@/components/notification';
+import AuthProvider from '@/components/providers/auth.provider';
+import { KEY } from '@/constants/key';
+import { getCookie } from '@/lib/cookies';
 import { airbnb } from '@/lib/fonts';
 
 export const metadata: Metadata = {
@@ -14,13 +17,23 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const token = getCookie(KEY.TOKEN)?.value;
+  const user = getCookie(KEY.USER)?.value;
+
   return (
     <html lang='en'>
       <body className={airbnb.variable}>
-        {children}
+        <AuthProvider
+          initialState={{
+            token,
+            user: user && JSON.parse(user),
+          }}
+        >
+          {children}
 
-        {/* React-Toastify */}
-        <Notification />
+          {/* React-Toastify */}
+          <Notification />
+        </AuthProvider>
       </body>
     </html>
   );

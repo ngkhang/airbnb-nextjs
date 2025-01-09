@@ -41,7 +41,7 @@ function renderInput<T extends z.ZodType>({
     ),
     password: (
       <FormControl>
-        <PasswordInput type='password' placeholder={placeholder} {...field} />
+        <PasswordInput placeholder={placeholder} {...field} />
       </FormControl>
     ),
     select: (

@@ -1,8 +1,15 @@
 'use client';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
+import ROUTES from '@/constants/routes';
+import useNotification from '@/hooks/use-notification';
 import useZodForm from '@/hooks/use-zod-form';
-import { RegisterSchema, type RegisterFormType } from '@/schemas/auth.schema';
+import { RegisterSchema } from '@/schemas/auth.schema';
+import authService from '@/services/auth.service';
+import type { RegisterForm } from '@/types/auth.type';
 
 import FormFieldComponent from './form-field';
 import type { FieldConfig } from './form.type';
@@ -35,6 +42,11 @@ const registerFields: FieldConfig<typeof RegisterSchema>[] = [
 ];
 
 export default function RegisterForm() {
+  const router = useRouter();
+  const [loading, setLoading] = useState<boolean>(false);
+  // const { setAccount } = useAuthContext();
+  const { show } = useNotification();
+
   const form = useZodForm(RegisterSchema, {
     defaultValues: {
       email: '',
@@ -45,10 +57,31 @@ export default function RegisterForm() {
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: RegisterFormType) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  async function onSubmit(values: RegisterForm) {
+    if (loading) return;
+    setLoading(true);
+
+    try {
+      // Send form data login
+      const res = await authService.register(values);
+
+      if (res.statusCode !== 200)
+        throw new Error(
+          typeof res.content === 'string' ? res.content : res.message
+        );
+
+      if (res.content) {
+        // - Get notification
+        show('Register successful!');
+        // - Redirect to home page
+        router.push(ROUTES.AUTH.LOGIN);
+        router.refresh();
+      }
+    } catch (error) {
+      console.log('🚀 ~ onSubmit ~ error:', error);
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
