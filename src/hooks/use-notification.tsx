@@ -8,26 +8,25 @@ import {
   type ToastOptions,
 } from 'react-toastify';
 
-type NotificationFunction = (
-  content: ToastContent,
-  options?: ToastOptions
-) => void;
-
-interface NotificationHookResult {
-  show: NotificationFunction;
-  loading: NotificationFunction;
-  update: NotificationFunction;
-  isLoading: boolean;
+interface Method {
+  (content: ToastContent, options?: ToastOptions): void;
 }
+
+type NotificationHookResult<T> = () => {
+  show: T;
+  loading: T;
+  update: T;
+  isLoading: boolean;
+};
 
 /**
  * Custom hook for managing toast notifications using react-toastify
  *
- * @returns {NotificationHookResult} Object containing show and update functions, and loading state
+ * @returns Object containing show and update functions, and loading state
  * @package react-toastify
  * @link https://fkhadra.github.io/react-toastify/introduction/
  */
-export default function useNotification(): NotificationHookResult {
+const useNotification: NotificationHookResult<Method> = () => {
   const toastId = useRef<Id | null>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -37,11 +36,9 @@ export default function useNotification(): NotificationHookResult {
    * @param content - Message to display in the toast
    * @param options - Additional toast options
    */
-  const show: NotificationFunction = (content, options): void => {
+  const show: Method = (content, options): void => {
     toast(content, {
-      type: 'default',
       hideProgressBar: true,
-      isLoading: false,
       ...options,
     });
   };
@@ -52,10 +49,7 @@ export default function useNotification(): NotificationHookResult {
    * @param content - Message to display in the toast
    * @param options - Additional toast options
    */
-  const loading: NotificationFunction = (
-    content = 'Loading...',
-    options
-  ): void => {
+  const loading: Method = (content = 'Loading...', options) => {
     if (toastId.current && isLoading) {
       toast.update(toastId.current, {
         render: 'Previous operation cancelled',
@@ -80,10 +74,7 @@ export default function useNotification(): NotificationHookResult {
    * @param content  New message to display
    * @param options - Additional toast options
    */
-  const update: NotificationFunction = (
-    content = 'Successful!',
-    options
-  ): void => {
+  const update: Method = (content, options) => {
     if (!toastId.current) return;
 
     toast.update(toastId.current, {
@@ -106,4 +97,6 @@ export default function useNotification(): NotificationHookResult {
     update,
     isLoading,
   };
-}
+};
+
+export default useNotification;

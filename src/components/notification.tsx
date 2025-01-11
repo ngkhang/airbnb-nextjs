@@ -6,12 +6,12 @@ import {
   Bounce,
   ToastContainer,
   type ToastContainerProps,
-  type TypeOptions,
 } from 'react-toastify';
 
 import { cn } from '@/lib/utils';
 
-import Icon, { type IconName } from './icons/icon';
+import Icon from './icons/icon';
+import Spinner from './icons/spinner';
 
 const configDefault: ToastContainerProps = {
   position: 'top-right',
@@ -29,32 +29,6 @@ const configDefault: ToastContainerProps = {
   limit: 3,
 };
 
-type IconToastType = {
-  [key in TypeOptions]: {
-    name: IconName;
-    color?: string;
-  };
-};
-
-const iconToast: Omit<IconToastType, 'default'> = {
-  info: {
-    name: 'spinner',
-    color: '',
-  },
-  success: {
-    name: 'success',
-    color: 'green',
-  },
-  warning: {
-    name: 'warning',
-    color: 'yellow',
-  },
-  error: {
-    name: 'error',
-    color: 'red',
-  },
-};
-
 const notificationVariants = cva(
   'left-[env(safe-area-inset-left)] top-[var(--toastify-toast-top)] w-screen px-4 sm:bottom-0 sm:top-[unset] md:left-[unset] md:right-[var(--toastify-toast-right)] md:top-[unset] md:w-fit md:px-0 [&>div]:w-full [&>div]:md:w-80 [&>div]:2xl:w-96'
 );
@@ -69,9 +43,18 @@ const Notification = ({ className }: NotificationProps) => (
     {...configDefault}
     className={cn(notificationVariants(), className)}
     icon={({ type }) => {
-      if (type === 'default') return null;
-
-      return <Icon name={iconToast[type].name} color={iconToast[type].color} />;
+      switch (type) {
+        case 'info':
+          return <Spinner />;
+        case 'success':
+          return <Icon.success color='green' />;
+        case 'warning':
+          return <Icon.warning color='yellow' />;
+        case 'error':
+          return <Icon.error color='red' />;
+        default:
+          return null;
+      }
     }}
   />
 );

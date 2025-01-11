@@ -1,12 +1,12 @@
 import type { LucideProps } from 'lucide-react';
 
-const AirbnbSymbol = (props: LucideProps) => (
+const AirbnbSymbol = ({ size = 24, ...props }: LucideProps) => (
   <svg
+    width={size}
+    height={size}
     enableBackground='new 0 0 1991.3 2143.2'
     viewBox='0 0 1991.3 2143.2'
     xmlns='http://www.w3.org/2000/svg'
-    width='24'
-    height='24'
     {...props}
   >
     <path
@@ -15,5 +15,4 @@ const AirbnbSymbol = (props: LucideProps) => (
     />
   </svg>
 );
-
 export default AirbnbSymbol;
