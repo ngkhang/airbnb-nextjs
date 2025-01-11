@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import AirbnbBlack from '@/components/icons/airbnb-black';
+import Icon from '@/components/icons/icon';
 
 const notFoundPage = {
   metaData: {
@@ -68,8 +68,8 @@ export default function NotFoundPage() {
       {/* Header */}
       <header className='mx-auto w-auto p-3 pb-0 md:w-[740px] md:px-6 xl:w-[1080px]'>
         <div className='flex items-center justify-start'>
-          <Link href={routes.home} className=''>
-            <AirbnbBlack />
+          <Link href={routes.home}>
+            <Icon.airbnbBlack />
           </Link>
         </div>
       </header>
