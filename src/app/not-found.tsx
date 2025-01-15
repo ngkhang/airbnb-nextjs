@@ -1,74 +1,36 @@
 'use client';
 
-import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 import Icon from '@/components/icons/icon';
+import ROUTES from '@/constants/routes';
+import { getPathFileAssets } from '@/helpers/fileAssets';
 
-const notFoundPage = {
-  metaData: {
-    title: '404 Page Not Found - Airbnb',
-    description: '',
-  },
-  page: {
-    title: 'Oops!',
-    subTitle: "We can't seem to find the page you're looking for.",
-    helpLinks: {
-      title: 'Here are some helpful links instead:',
-      items: [
-        {
-          key: 0,
-          title: 'Home',
-        },
-        {
-          key: 1,
-          title: 'Search',
-        },
-        {
-          key: 2,
-          title: 'Help',
-        },
-        {
-          key: 3,
-          title: 'Traveling on Airbnb',
-        },
-        {
-          key: 4,
-          title: 'Hosting on Airbnb',
-        },
-        {
-          key: 5,
-          title: 'Trust & Safety',
-        },
-        {
-          key: 6,
-          title: 'Sitemap',
-        },
-      ],
-    },
-    banner: {
-      url: '/images/404-Airbnb.gif',
-      alt: 'Girl has dropped her ice cream.',
-    },
-  },
-};
+// FIXME: Handle get metaData from locale in Client component
+// export async function generateMetadata(): Promise<Metadata> {
+// }
 
-const routes = {
-  home: '/',
-};
-
-const { metaData, page } = notFoundPage;
-
-export const metadata: Metadata = metaData;
+const keyLinks = [
+  'home',
+  'search',
+  'help',
+  'traveling',
+  'hosting',
+  'safety',
+  'sitemap',
+] as const;
 
 export default function NotFoundPage() {
+  const t = useTranslations('pages.notFound');
+
   return (
     <div className='min-h-screen'>
       {/* Header */}
       <header className='mx-auto w-auto p-3 pb-0 md:w-[740px] md:px-6 xl:w-[1080px]'>
         <div className='flex items-center justify-start'>
-          <Link href={routes.home}>
+          <Link href={ROUTES.HOME}>
             <Icon.airbnbBlack />
           </Link>
         </div>
@@ -79,14 +41,14 @@ export default function NotFoundPage() {
         {/* Content */}
         <div className='mb-12 text-[#484848]'>
           <h1 className='mb-6 text-[120px] font-bold xl:text-[145px]'>
-            {page.title}
+            {t('title')}
           </h1>
-          <h2 className='mb-4 text-3xl'>{page.subTitle}</h2>
+          <h2 className='mb-4 text-3xl'>{t('subTitle')}</h2>
           <ul className='text-sm'>
-            <li>{page.helpLinks.title}</li>
-            {page.helpLinks.items.map((item) => (
-              <li key={item.key} className='text-[#008489]'>
-                <Link href={routes.home}>{item.title}</Link>
+            <li>{t('helpLinks.title')}</li>
+            {keyLinks.map((key) => (
+              <li key={key} className='text-[#008489]'>
+                <Link href={ROUTES.HOME}>{t(`helpLinks.items.${key}`)}</Link>
               </li>
             ))}
           </ul>
@@ -95,8 +57,8 @@ export default function NotFoundPage() {
         {/* Banner */}
         <div className='flex items-center justify-center px-6 md:px-0'>
           <Image
-            src={page.banner.url}
-            alt={page.banner.alt}
+            src={getPathFileAssets('image', '404')}
+            alt={t('banner')}
             width={313}
             height={428}
             quality={75}

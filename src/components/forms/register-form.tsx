@@ -1,5 +1,6 @@
 'use client';
 import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 import { Button } from '@/components/ui/button';
@@ -9,43 +10,50 @@ import useNotification from '@/hooks/use-notification';
 import useZodForm from '@/hooks/use-zod-form';
 import { RegisterSchema } from '@/schemas/auth.schema';
 import authService from '@/services/auth.service';
+// FIXME: type 'RegisterForm' is defined but never used.
 import type { RegisterForm } from '@/types/auth.type';
 
-import FormFieldComponent from './form-field';
-import type { FieldConfig } from './form.type';
+import FormFieldComponent, { type ConfigFormField } from './form-field';
+import Icon from '../icons/icon';
 
-const registerFields: FieldConfig<typeof RegisterSchema>[] = [
+const configFormFields: ConfigFormField<typeof RegisterSchema>[] = [
   {
-    key: 0,
     name: 'email',
-    label: 'Email',
     required: true,
+    isShow: true,
     type: 'email',
-    placeholder: 'm@example.com',
   },
   {
-    key: 1,
     name: 'name',
-    label: 'Full name',
     required: true,
+    isShow: true,
     type: 'text',
-    placeholder: '',
   },
   {
-    key: 2,
     name: 'password',
-    label: 'Password',
     required: true,
+    isShow: true,
     type: 'password',
-    placeholder: '******',
   },
-];
+  {
+    name: 'role',
+    required: true,
+    isShow: true,
+    type: 'select',
+    optionsVal: {
+      admin: 'ADMIN',
+      user: 'USER',
+    },
+  },
+] as const;
+
+const ROLE_KEYS = ['admin', 'user'] as const;
 
 export default function RegisterForm() {
   const router = useRouter();
   const [loading, setLoading] = useState<boolean>(false);
-  // const { setAccount } = useAuthContext();
   const { show } = useNotification();
+  const t = useTranslations();
 
   const form = useZodForm(RegisterSchema, {
     defaultValues: {
@@ -72,13 +80,14 @@ export default function RegisterForm() {
 
       if (res.content) {
         // - Get notification
-        show('Register successful!');
+        show(t('feedback.success.register'));
         // - Redirect to home page
         router.push(ROUTES.AUTH.LOGIN);
         router.refresh();
       }
     } catch (error) {
-      console.log('🚀 ~ onSubmit ~ error:', error);
+      // TODO: Catch and display error to Register functionality
+      console.log('🚀 ~ onSubmit ~ error:', typeof error);
     } finally {
       setLoading(false);
     }
@@ -90,15 +99,39 @@ export default function RegisterForm() {
         onSubmit={form.handleSubmit(onSubmit)}
         className='flex flex-col gap-6'
       >
-        {registerFields.map((item) => (
-          <FormFieldComponent key={item.key} form={form} config={{ ...item }} />
+        {configFormFields.map((item) => (
+          <FormFieldComponent
+            key={item.name}
+            form={form}
+            config={{
+              ...item,
+              label: t(`ui.inputs.${item.name}.label`),
+              placeholder: t(`ui.inputs.${item.name}.placeholder`),
+              options:
+                item.optionsVal &&
+                ROLE_KEYS.map((key) => {
+                  return {
+                    value: item.optionsVal ? item.optionsVal[key] : '',
+                    label: t(`ui.inputs.role.options.${key}`),
+                  };
+                }),
+            }}
+          />
         ))}
 
         <Button
           type='submit'
+          disabled={loading}
           className='w-full bg-[#FF385C] transition-colors hover:bg-linear'
         >
-          Create account
+          {loading ? (
+            <>
+              <Icon.spinner />
+              {t('ui.buttons.submitting')}
+            </>
+          ) : (
+            <>{t('ui.buttons.register')}</>
+          )}
         </Button>
       </form>
     </Form>

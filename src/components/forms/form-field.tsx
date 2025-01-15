@@ -1,6 +1,13 @@
 'use client';
 
+import { clsx } from 'clsx';
 import React from 'react';
+import type {
+  ControllerRenderProps,
+  FieldPath,
+  Path,
+  UseFormReturn,
+} from 'react-hook-form';
 import type { z } from 'zod';
 
 import {
@@ -11,7 +18,6 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 
-import type { FormFieldProps, InputFieldProps, InputType } from './form.type';
 import { PasswordInput } from '../password-input';
 import { Input } from '../ui/input';
 import {
@@ -21,6 +27,28 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../ui/select';
+
+export type InputType = 'text' | 'email' | 'password' | 'select';
+export interface SelectOption {
+  value: string;
+  label: string;
+}
+export interface InputFieldProps<T extends z.ZodType> {
+  field: ControllerRenderProps<T, Path<T>>;
+  type: InputType;
+  placeholder?: string;
+  options?: SelectOption[];
+}
+
+export interface ConfigFormField<T extends z.ZodType> {
+  name: FieldPath<z.infer<T>>;
+  required: boolean;
+  isShow: boolean;
+  type: InputType;
+  optionsVal?: {
+    [key: string]: string;
+  };
+}
 
 function renderInput<T extends z.ZodType>({
   field,
@@ -45,15 +73,24 @@ function renderInput<T extends z.ZodType>({
       </FormControl>
     ),
     select: (
-      <Select onValueChange={field.onChange} defaultValue={field.value}>
+      <Select
+        onValueChange={field.onChange}
+        value={field.value}
+        defaultValue={field.value}
+      >
         <FormControl>
           <SelectTrigger>
-            <SelectValue placeholder={placeholder} />
+            <SelectValue placeholder={placeholder}>
+              {
+                options?.find((opt) => opt.value.toLowerCase() === field.value)
+                  ?.label
+              }
+            </SelectValue>
           </SelectTrigger>
         </FormControl>
         <SelectContent>
           {options?.map((item) => (
-            <SelectItem key={item.key} value={item.value}>
+            <SelectItem key={item.value} value={item.value}>
               {item.label}
             </SelectItem>
           ))}
@@ -65,6 +102,19 @@ function renderInput<T extends z.ZodType>({
   return output[type];
 }
 
+export interface FormFieldProps<T extends z.ZodType> {
+  form: UseFormReturn<z.infer<T>>;
+  config: {
+    name: FieldPath<z.infer<T>>;
+    label: string;
+    required: boolean;
+    isShow: boolean;
+    type: InputType;
+    placeholder?: string;
+    options?: SelectOption[];
+  };
+}
+
 export default function FormFieldComponent<T extends z.ZodType>({
   form,
   config,
@@ -74,7 +124,7 @@ export default function FormFieldComponent<T extends z.ZodType>({
       control={form.control}
       name={config.name}
       render={({ field }) => (
-        <FormItem className='grid gap-2'>
+        <FormItem className={clsx('grid gap-2', !config.isShow && 'hidden')}>
           <FormLabel>
             {config.label}
             {config.required && (
@@ -83,9 +133,7 @@ export default function FormFieldComponent<T extends z.ZodType>({
           </FormLabel>
           {renderInput({
             field,
-            type: config.type,
-            placeholder: config.placeholder,
-            options: config.options,
+            ...config,
           })}
           <FormMessage />
         </FormItem>

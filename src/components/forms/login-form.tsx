@@ -1,6 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import React, { useState } from 'react';
 
 import { Button } from '@/components/ui/button';
@@ -12,39 +13,36 @@ import { LoginSchema } from '@/schemas/auth.schema';
 import authService from '@/services/auth.service';
 import type { LogInForm } from '@/types/auth.type';
 
-import FormFieldComponent from './form-field';
-import type { FieldConfig } from './form.type';
+import FormFieldComponent, { type ConfigFormField } from './form-field';
+import Icon from '../icons/icon';
 import { useAuthContext } from '../providers/auth.provider';
 
-const loginFields: FieldConfig<typeof LoginSchema>[] = [
+const configFormFields: ConfigFormField<typeof LoginSchema>[] = [
   {
-    key: 0,
     name: 'email',
-    label: 'Email',
     required: true,
+    isShow: true,
     type: 'email',
-    placeholder: 'm@example.com',
   },
   {
-    key: 1,
     name: 'password',
-    label: 'Password',
     required: true,
+    isShow: true,
     type: 'password',
-    placeholder: '******',
   },
-];
+] as const;
 
 export default function LoginForm() {
   const router = useRouter();
   const [loading, setLoading] = useState<boolean>(false);
   const { setAccount } = useAuthContext();
   const { show } = useNotification();
+  const t = useTranslations();
 
   const form = useZodForm(LoginSchema, {
     defaultValues: {
-      email: 'khang@gmail.com',
-      password: '1234',
+      email: '',
+      password: '',
     },
   });
 
@@ -63,11 +61,12 @@ export default function LoginForm() {
       await authService.loginNextServer(res.content);
       // - Get notification
       setLoading(false);
-      show('Login successful!');
+      show(t('feedback.success.login'));
       // - Redirect to home page
       router.push(ROUTES.HOME);
       router.refresh();
     }
+    // TODO: Catch and display error to Login functionality
   }
 
   return (
@@ -76,16 +75,31 @@ export default function LoginForm() {
         onSubmit={form.handleSubmit(onSubmit)}
         className='flex flex-col gap-6'
       >
-        {loginFields.map((item) => (
-          <FormFieldComponent key={item.key} form={form} config={{ ...item }} />
+        {configFormFields.map((item) => (
+          <FormFieldComponent
+            key={item.name}
+            form={form}
+            config={{
+              ...item,
+              label: t(`ui.inputs.${item.name}.label`),
+              placeholder: t(`ui.inputs.${item.name}.placeholder`),
+            }}
+          />
         ))}
+
         <Button
           type='submit'
           disabled={loading}
           className='w-full bg-[#FF385C] transition-colors hover:bg-linear'
         >
-          {/* NOTE: Add Spinner component */}
-          {loading ? 'Submitting' : 'Login'}
+          {loading ? (
+            <>
+              <Icon.spinner />
+              {t('ui.buttons.submitting')}
+            </>
+          ) : (
+            <>{t('ui.buttons.login')}</>
+          )}
         </Button>
       </form>
     </Form>

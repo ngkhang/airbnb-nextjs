@@ -1,3 +1,6 @@
+'use client';
+
+import { useTranslations } from 'next-intl';
 import React from 'react';
 
 import { cn } from '@/lib/utils';
@@ -6,13 +9,9 @@ interface Props {
   className?: string;
 }
 
-const content = {
-  title:
-    "We'll call or text you to confirm your number. Standard message and data rates apply.",
-  policy: 'Privacy Policy',
-};
-
 export function Footer({ className }: Props) {
+  const t = useTranslations('pages.auth.shared.footer');
+
   return (
     <div
       className={cn(
@@ -21,7 +20,7 @@ export function Footer({ className }: Props) {
       )}
     >
       <p>
-        {content.title} <span>{content.policy}</span>
+        {t('title')} <span>{t('policy')}</span>
       </p>
     </div>
   );

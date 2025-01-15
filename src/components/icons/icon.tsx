@@ -21,7 +21,7 @@ const Icon = {
   success: CircleCheck,
   warning: CircleAlert,
   error: CircleX,
-  Spinner,
+  spinner: Spinner,
   airbnb: (props: LucideProps) => Airbnb(props),
   airbnbBlack: (props: LucideProps) => AirbnbBlack(props),
   airbnbSymbol: (props: LucideProps) => AirbnbSymbol(props),
