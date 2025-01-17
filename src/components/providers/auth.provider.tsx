@@ -1,24 +1,24 @@
 'use client';
 
-import React, { createContext, useContext, useState } from 'react';
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
+import { KEY } from '@/constants/key';
 import type { User } from '@/types/user.type';
 
-interface Account {
-  user: User | null;
-  token?: string;
-}
 interface AuthContextProps {
-  account: Account;
-  setAccount: (account: Account) => void;
+  user: User | null;
+  setUser: (user: User | null) => void;
 }
 
 const AuthContext = createContext<AuthContextProps>({
-  account: {
-    token: '',
-    user: null,
-  },
-  setAccount: (account) => {},
+  user: null,
+  setUser: () => {},
 });
 
 export const useAuthContext = () => {
@@ -32,21 +32,34 @@ export const useAuthContext = () => {
 };
 
 export default function AuthProvider({
-  initialState = {
-    token: '',
-    user: null,
-  },
   children,
 }: {
-  initialState: Account;
   children: React.ReactNode;
 }) {
-  const [account, setAccount] = useState<Account>({
-    ...initialState,
-  });
+  const [user, setUserState] = useState<User | null>(
+    () =>
+      // if (isClient()) {
+      //   const _user = localStorage.getItem(KEY.USER)
+      //   return _user ? JSON.parse(_user) : null
+      // }
+      null
+  );
+
+  const setUser = useCallback(
+    (user: User | null) => {
+      setUserState(user);
+      localStorage.setItem(KEY.USER, JSON.stringify(user));
+    },
+    [setUserState]
+  );
+
+  useEffect(() => {
+    const _user = localStorage.getItem(KEY.USER);
+    setUserState(_user ? JSON.parse(_user) : null);
+  }, [setUserState]);
 
   return (
-    <AuthContext.Provider value={{ account, setAccount }}>
+    <AuthContext.Provider value={{ user, setUser }}>
       {children}
     </AuthContext.Provider>
   );

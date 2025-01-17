@@ -1,17 +1,5 @@
-import type { User, UserRole } from './user.type';
+import type { LoginResType, User } from './user.type';
 
-export interface LogInForm {
-  email: string;
-  password: string;
-}
+export interface LoginServiceRes extends EntitySuccessPayload<LoginResType> {}
 
-export type LogInResponse = ActionResponse<{ user: User; token: string }>;
-
-export interface RegisterForm {
-  email: string;
-  name: string;
-  password: string;
-  role: UserRole;
-}
-
-export type RegisterResponse = ActionResponse<User>;
+export interface RegisterServiceRes extends EntitySuccessPayload<User> {}

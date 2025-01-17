@@ -17,3 +17,8 @@ export interface User {
   gender: boolean;
   role: UserRole;
 }
+
+export interface LoginResType {
+  user: User;
+  token: string;
+}

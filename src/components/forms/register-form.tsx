@@ -8,10 +8,9 @@ import { Form } from '@/components/ui/form';
 import ROUTES from '@/constants/routes';
 import useNotification from '@/hooks/use-notification';
 import useZodForm from '@/hooks/use-zod-form';
-import { RegisterSchema } from '@/schemas/auth.schema';
+import { handleErrorApi } from '@/lib/utils';
+import { RegisterSchema, type RegisterFormType } from '@/schemas/auth.schema';
 import authService from '@/services/auth.service';
-// FIXME: type 'RegisterForm' is defined but never used.
-import type { RegisterForm } from '@/types/auth.type';
 
 import FormFieldComponent, { type ConfigFormField } from './form-field';
 import Icon from '../icons/icon';
@@ -65,29 +64,24 @@ export default function RegisterForm() {
   });
 
   // 2. Define a submit handler.
-  async function onSubmit(values: RegisterForm) {
-    if (loading) return;
-    setLoading(true);
-
+  async function onSubmit(values: RegisterFormType) {
     try {
+      if (loading) return;
+      setLoading(true);
+
       // Send form data login
-      const res = await authService.register(values);
+      await authService.register(values);
 
-      if (res.statusCode !== 200)
-        throw new Error(
-          typeof res.content === 'string' ? res.content : res.message
-        );
-
-      if (res.content) {
-        // - Get notification
-        show(t('feedback.success.register'));
-        // - Redirect to home page
-        router.push(ROUTES.AUTH.LOGIN);
-        router.refresh();
-      }
+      // Get notification and redirect to login page
+      show(t('feedback.success.register'), {
+        type: 'success',
+        onClose: () => {
+          router.push(ROUTES.AUTH.LOGIN);
+          router.refresh();
+        },
+      });
     } catch (error) {
-      // TODO: Catch and display error to Register functionality
-      console.log('🚀 ~ onSubmit ~ error:', typeof error);
+      handleErrorApi(error);
     } finally {
       setLoading(false);
     }

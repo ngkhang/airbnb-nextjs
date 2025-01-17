@@ -2,14 +2,20 @@
 import en from '../locales/en.json';
 
 type Messages = typeof en;
+export interface BaseResponse {
+  statusCode: number;
+  dateTime: string;
+}
 
 declare global {
   // Use type safe response API
-  interface ActionResponse<T> {
-    statusCode: number;
-    dateTime: string;
-    content?: T;
-    message?: string;
+  interface EntitySuccessPayload<T> extends BaseResponse {
+    content: T;
+  }
+
+  interface EntityErrorPayload extends BaseResponse {
+    content: string;
+    message: string;
   }
 
   // Use type safe message keys with `next-intl`

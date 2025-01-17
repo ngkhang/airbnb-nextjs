@@ -33,12 +33,7 @@ export default async function RootLayout({
     <html lang={locale}>
       <body className={airbnb.variable}>
         <NextIntlClientProvider messages={messages}>
-          <AuthProvider
-            initialState={{
-              token,
-              user: user && JSON.parse(user),
-            }}
-          >
+          <AuthProvider>
             {children}
             <Notification />
           </AuthProvider>

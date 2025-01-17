@@ -1,69 +1,38 @@
 import { api } from '@/constants/api';
 import { ENV } from '@/constants/env';
-import type {
-  LogInForm,
-  LogInResponse,
-  RegisterForm,
-  RegisterResponse,
-} from '@/types/auth.type';
-import type { User } from '@/types/user.type';
-
-const tokenCybersoft = ENV.TOKEN_CYBERSOFT || '';
+import http from '@/lib/http';
+import type { LoginFormType, RegisterFormType } from '@/schemas/auth.schema';
+import type { LoginServiceRes, RegisterServiceRes } from '@/types/auth.type';
+import type { LoginResType } from '@/types/user.type';
 
 const authService = {
-  // NOTE: Write description
-  login: async (formData: LogInForm): Promise<LogInResponse> => {
-    const result = await fetch(api.auth.login(), {
-      method: 'POST',
-      body: JSON.stringify(formData),
-      headers: {
-        'Content-Type': 'application/json',
-        tokenCybersoft: tokenCybersoft,
-      },
-    });
-
-    const data: LogInResponse = await result.json();
-
-    return data;
+  login: async (body: LoginFormType): Promise<LoginServiceRes> => {
+    const data = await http.post<LoginServiceRes>(api.auth.login, body);
+    return data.payload;
   },
 
-  // NOTE: Write description
-  register: async (formData: RegisterForm): Promise<RegisterResponse> => {
-    const response = await fetch(api.auth.register(), {
-      method: 'POST',
-      body: JSON.stringify(formData),
-      headers: {
-        'Content-Type': 'application/json',
-        tokenCybersoft: tokenCybersoft,
-      },
-    });
-
-    const data: RegisterResponse = await response.json();
-    return data;
+  register: async (body: RegisterFormType): Promise<RegisterServiceRes> => {
+    const data = await http.post<RegisterServiceRes>(api.auth.register, body);
+    return data.payload;
   },
 
-  // NOTE: Write description
-  loginNextServer: async (data: { user: User; token: string }) => {
-    const res = await fetch(api.nextServer.login(), {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
+  loginNextServer: async (body: LoginResType) => {
+    const data = await http.post(api.nextServer.login, body, {
+      baseURL: ENV.API_BASE_URL_NEXT_SERVER,
     });
-    return await res.json();
+    return data.payload;
   },
 
-  // NOTE: Write description
   logoutNextServer: async () => {
-    const res = await fetch(api.nextServer.logout(), {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: null,
-    });
-    return await res.json();
+    const data = await http.post(
+      api.nextServer.logout,
+      {},
+      {
+        baseURL: ENV.API_BASE_URL_NEXT_SERVER,
+      }
+    );
+
+    return data.payload;
   },
 };
 

@@ -1,24 +1,34 @@
 import { KEY } from '@/constants/key';
 import { setCookie } from '@/lib/cookies';
-import type { LogInResponse } from '@/types/auth.type';
+import type { LoginResType } from '@/types/user.type';
 
+// TODO: Config type response of next server
 export async function POST(request: Request) {
-  const res: LogInResponse = await request.json();
-  const { token, user } = res;
+  const res: LoginResType = await request.json();
 
+  const { user, token } = res;
+
+  if (!token || !user) {
+    return Response.json(
+      {
+        message: 'token or user info is not valid',
+        dateTime: new Date().toString(),
+      },
+      {
+        status: 400,
+      }
+    );
+  }
   setCookie(KEY.TOKEN, token);
   setCookie(KEY.ROLE, user.role);
-  setCookie(KEY.USER, JSON.stringify(user));
-
-  return new Response(
-    JSON.stringify({
-      statusCode: 200,
+  return Response.json(
+    {
+      ...res,
       message: 'Completed set token and role to cookie',
       dateTime: new Date().toString(),
-    }),
+    },
     {
       status: 200,
-      statusText: 'OK',
     }
   );
 }
