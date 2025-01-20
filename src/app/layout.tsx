@@ -5,6 +5,7 @@ import { getLocale, getMessages, getTranslations } from 'next-intl/server';
 import '../assets/styles/globals.css';
 import Notification from '@/components/notification';
 import AuthProvider from '@/components/providers/auth.provider';
+import StateProvider from '@/components/providers/query-client.provider';
 import { KEY } from '@/constants/key';
 import { getCookie } from '@/lib/cookies';
 import { airbnb } from '@/lib/fonts';
@@ -32,12 +33,14 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body className={airbnb.variable}>
-        <NextIntlClientProvider messages={messages}>
-          <AuthProvider>
-            {children}
-            <Notification />
-          </AuthProvider>
-        </NextIntlClientProvider>
+        <StateProvider>
+          <NextIntlClientProvider messages={messages}>
+            <AuthProvider>
+              {children}
+              <Notification />
+            </AuthProvider>
+          </NextIntlClientProvider>
+        </StateProvider>
       </body>
     </html>
   );
