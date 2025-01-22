@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ENV } from '@/constants/env';
 import { KEY } from '@/constants/key';
+import envConfig from '@/lib/env';
 
 import { normalizePath } from './utils';
 
@@ -44,10 +44,10 @@ const request = async <Response>(
       ? {}
       : {
           'Content-Type': 'application/json',
-          [KEY.TOKEN_CYBERSOFT]: ENV.TOKEN_CYBERSOFT || '',
+          [KEY.TOKEN_CYBERSOFT]: envConfig.TOKEN_CYBERSOFT || '',
         };
 
-  const baseURL = options?.baseURL ?? ENV.API_BASE_URL_CYBERSOFT;
+  const baseURL = options?.baseURL ?? envConfig.API_BASE_URL_CYBERSOFT;
   const fullUrl = `${baseURL}/${normalizePath(url)}`;
 
   const res = await fetch(fullUrl, {

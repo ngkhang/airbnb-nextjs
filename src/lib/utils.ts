@@ -65,12 +65,12 @@ export const handleErrorApi = (
     toast.error(error.payload.content, {
       autoClose: options.duration,
     });
+  } else {
+    // Fallback for unknown error types
+    toast.error(fallbackMessage, {
+      autoClose: options.duration,
+    });
   }
-
-  // Fallback for unknown error types
-  toast.error(fallbackMessage, {
-    autoClose: options.duration,
-  });
 };
 
 /**

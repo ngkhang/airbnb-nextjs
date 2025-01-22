@@ -1,5 +1,5 @@
 import { api } from '@/constants/api';
-import { ENV } from '@/constants/env';
+import envConfig from '@/lib/env';
 import http from '@/lib/http';
 import type { LoginFormType, RegisterFormType } from '@/schemas/auth.schema';
 import type { LoginServiceRes, RegisterServiceRes } from '@/types/auth.type';
@@ -18,7 +18,7 @@ const authService = {
 
   loginNextServer: async (body: LoginResType) => {
     const data = await http.post(api.nextServer.login, body, {
-      baseURL: ENV.API_BASE_URL_NEXT_SERVER,
+      baseURL: envConfig.API_BASE_URL_NEXT_SERVER,
     });
     return data.payload;
   },
@@ -28,7 +28,7 @@ const authService = {
       api.nextServer.logout,
       {},
       {
-        baseURL: ENV.API_BASE_URL_NEXT_SERVER,
+        baseURL: envConfig.API_BASE_URL_NEXT_SERVER,
       }
     );
 
