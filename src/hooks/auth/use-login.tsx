@@ -4,15 +4,15 @@ import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 
-import { useAuthContext } from '@/components/providers/auth.provider';
 import ROUTES from '@/constants/routes';
 import type { LoginFormType } from '@/schemas/auth.schema';
 import authService from '@/services/auth.service';
+import { useUserStore } from '@/stores/userStore';
 
 import useNotification from '../use-notification';
 
 export default function useLogin() {
-  const { setUser } = useAuthContext();
+  const { setUser } = useUserStore();
   const router = useRouter();
   const { show } = useNotification();
   const t = useTranslations();

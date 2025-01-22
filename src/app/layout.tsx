@@ -4,10 +4,7 @@ import { getLocale, getMessages, getTranslations } from 'next-intl/server';
 
 import '../assets/styles/globals.css';
 import Notification from '@/components/notification';
-import AuthProvider from '@/components/providers/auth.provider';
 import StateProvider from '@/components/providers/query-client.provider';
-import { KEY } from '@/constants/key';
-import { getCookie } from '@/lib/cookies';
 import { airbnb } from '@/lib/fonts';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -27,18 +24,13 @@ export default async function RootLayout({
   const locale = await getLocale();
   const messages = await getMessages();
 
-  const token = getCookie(KEY.TOKEN)?.value;
-  const user = getCookie(KEY.USER)?.value;
-
   return (
     <html lang={locale}>
       <body className={airbnb.variable}>
         <StateProvider>
           <NextIntlClientProvider messages={messages}>
-            <AuthProvider>
-              {children}
-              <Notification />
-            </AuthProvider>
+            {children}
+            <Notification />
           </NextIntlClientProvider>
         </StateProvider>
       </body>
