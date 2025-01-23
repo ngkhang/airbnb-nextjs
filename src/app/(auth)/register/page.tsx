@@ -22,7 +22,7 @@ export default function RegisterPage() {
           <CardContent className='grid p-0 md:grid-cols-2'>
             <div className='relative hidden md:block'>
               <Link href={ROUTES.HOME} className='absolute left-3 top-3 z-10'>
-                <Icon.airbnbSymbol className='size-6' />
+                <Icon name='airbnbSymbol' className='size-6' />
               </Link>
               <Image
                 src={getPathFileAssets('image', 'placeholder')}

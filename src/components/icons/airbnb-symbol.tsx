@@ -15,4 +15,7 @@ const AirbnbSymbol = ({ size = 24, ...props }: LucideProps) => (
     />
   </svg>
 );
+
+AirbnbSymbol.displayName = 'AirbnbSymbol';
+
 export default AirbnbSymbol;

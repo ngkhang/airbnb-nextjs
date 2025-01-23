@@ -31,7 +31,7 @@ export default function NotFoundPage() {
       <header className='mx-auto w-auto p-3 pb-0 md:w-[740px] md:px-6 xl:w-[1080px]'>
         <div className='flex items-center justify-start'>
           <Link href={ROUTES.HOME}>
-            <Icon.airbnbBlack />
+            <Icon name='airbnbBlack' />
           </Link>
         </div>
       </header>

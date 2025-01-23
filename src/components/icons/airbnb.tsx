@@ -28,4 +28,6 @@ const Airbnb = ({ size, ...props }: LucideProps) => {
   );
 };
 
+Airbnb.displayName = 'Airbnb';
+
 export default Airbnb;

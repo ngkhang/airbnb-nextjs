@@ -28,6 +28,6 @@ const Google = ({ size, ...props }: LucideProps) => (
   </svg>
 );
 
-Google.display = 'Google';
+Google.displayName = 'Google';
 
 export default Google;

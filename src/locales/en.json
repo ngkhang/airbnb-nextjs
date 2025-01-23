@@ -56,11 +56,11 @@
         },
         "socialAuth": {
           "title": "or",
-          "items": {
-            "apple": "Login with Apple",
-            "google": "Login with Google",
-            "meta": "Login with Meta"
-          }
+          "items": [
+            { "apple": "Login with Apple" },
+            { "google": "Login with Google" },
+            { "meta": "Login with Meta" }
+          ]
         }
       },
       "login": {

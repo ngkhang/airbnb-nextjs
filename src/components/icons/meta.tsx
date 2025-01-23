@@ -15,6 +15,6 @@ const Meta = ({ size, ...props }: LucideProps) => (
   </svg>
 );
 
-Meta.display = 'Meta';
+Meta.displayName = 'Meta';
 
 export default Meta;

@@ -10,7 +10,7 @@ import { handleErrorApi } from '@/lib/utils';
 import { LoginSchema, type LoginFormType } from '@/schemas/auth.schema';
 
 import FormFieldComponent, { type ConfigFormField } from './form-field';
-import Icon from '../icons/icon';
+import Spinner from '../icons/spinner';
 
 const configFormFields: ConfigFormField<typeof LoginSchema>[] = [
   {
@@ -72,7 +72,7 @@ export default function LoginForm() {
         >
           {isPending ? (
             <>
-              <Icon.spinner />
+              <Spinner />
               {t('ui.buttons.submitting')}
             </>
           ) : (

@@ -1,10 +1,10 @@
 'use client';
 
-import { EyeIcon, EyeOffIcon } from 'lucide-react';
 import * as React from 'react';
 
 import { cn } from '@/lib/utils';
 
+import Icon from './icons/icon';
 import { Button } from './ui/button';
 import { Input, type InputProps } from './ui/input';
 
@@ -33,11 +33,12 @@ const PasswordInput = React.forwardRef<HTMLInputElement, InputProps>(
           disabled={disabled}
           onClick={() => setShow((prev) => !prev)}
         >
-          {show && !disabled ? (
-            <EyeIcon className='size-4' aria-hidden='true' />
-          ) : (
-            <EyeOffIcon className='size-4' aria-hidden='true' />
-          )}
+          <Icon
+            name={show && !disabled ? 'eye' : 'eyeOff'}
+            className='size-4'
+            aria-hidden='true'
+          />
+
           <span className='sr-only'>
             {show ? 'Hide password' : 'Show password'}
           </span>
@@ -46,6 +47,7 @@ const PasswordInput = React.forwardRef<HTMLInputElement, InputProps>(
     );
   }
 );
+
 PasswordInput.displayName = 'Input';
 
 export { PasswordInput };

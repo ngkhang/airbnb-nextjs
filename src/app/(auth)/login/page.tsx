@@ -19,7 +19,7 @@ export default function LoginPage() {
         {/* Icon */}
         <div className='flex items-center justify-center'>
           <Link href={ROUTES.HOME} className='font-medium'>
-            <Icon.airbnbSymbol className='size-6' />
+            <Icon name='airbnbSymbol' className='size-6' />
           </Link>
         </div>
 

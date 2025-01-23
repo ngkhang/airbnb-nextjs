@@ -28,4 +28,6 @@ const AirbnbBlack = ({ size, ...props }: LucideProps) => {
   );
 };
 
+AirbnbBlack.displayName = 'AirbnbBlack';
+
 export default AirbnbBlack;

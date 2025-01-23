@@ -15,6 +15,6 @@ const Apple = ({ size, ...props }: LucideProps) => (
   </svg>
 );
 
-Apple.display = 'Apple';
+Apple.displayName = 'Apple';
 
 export default Apple;

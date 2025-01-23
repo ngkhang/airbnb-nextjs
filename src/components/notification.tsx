@@ -47,11 +47,11 @@ const Notification = ({ className }: NotificationProps) => (
         case 'info':
           return <Spinner />;
         case 'success':
-          return <Icon.success color='green' />;
+          return <Icon name='success' color='green' />;
         case 'warning':
-          return <Icon.warning color='yellow' />;
+          return <Icon name='warning' color='yellow' />;
         case 'error':
-          return <Icon.error color='red' />;
+          return <Icon name='error' color='red' />;
         default:
           return null;
       }
