@@ -44,7 +44,47 @@
   },
   "layout": {
     "header": {},
-    "footer": {}
+    "footer": {
+      "items": [
+        {
+          "title": "Support",
+          "items": [
+            "Help Center",
+            "AirCover",
+            "Anti-discrimination",
+            "Disability support",
+            "Cancellation options",
+            "Report neighborhood concern"
+          ]
+        },
+        {
+          "title": "Hosting",
+          "items": [
+            "Airbnb your home",
+            "AirCover for Hosts",
+            "Hosting resources",
+            "Community forum",
+            "Hosting responsibly",
+            "Airbnb-friendly apartments",
+            "Join a free Hosting class",
+            "Find a co-host"
+          ]
+        },
+        {
+          "title": "Airbnb",
+          "items": [
+            "Newsroom",
+            "New features",
+            "Careers",
+            "Investors",
+            "Gift cards",
+            "Airbnb.org emergency stays"
+          ]
+        }
+      ],
+      "copyright": "2024 Airbnb, Inc.",
+      "subs": ["Terms", "Sitemap", "Privacy", "Your Privacy Choices"]
+    }
   },
   "pages": {
     "home": {},

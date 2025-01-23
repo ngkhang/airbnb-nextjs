@@ -5,6 +5,7 @@ import {
   CircleCheck,
   CircleX,
   Info,
+  Globe,
   EyeIcon,
   EyeOffIcon,
   type LucideProps,
@@ -14,14 +15,20 @@ import Airbnb from './airbnb';
 import AirbnbBlack from './airbnb-black';
 import AirbnbSymbol from './airbnb-symbol';
 import Apple from './apple';
+import Facebook from './facebook';
 import Google from './google';
+import Instagram from './instagram';
 import Meta from './meta';
+import Privacy from './privacy';
+import Vnd from './vnd';
+import X from './x';
 
 const IconComponents = {
   info: Info,
   success: CircleCheck,
   warning: CircleAlert,
   error: CircleX,
+  globe: Globe,
   eye: EyeIcon,
   eyeOff: EyeOffIcon,
   airbnb: Airbnb,
@@ -30,6 +37,11 @@ const IconComponents = {
   apple: Apple,
   meta: Meta,
   google: Google,
+  privacy: Privacy,
+  x: X,
+  facebook: Facebook,
+  instagram: Instagram,
+  vnd: Vnd,
 } as const;
 
 export type IconName = keyof typeof IconComponents;
