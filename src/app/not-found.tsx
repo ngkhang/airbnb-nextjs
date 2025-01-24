@@ -57,7 +57,7 @@ export default function NotFoundPage() {
         {/* Banner */}
         <div className='flex items-center justify-center px-6 md:px-0'>
           <Image
-            src={getPathFileAssets('image', '404')}
+            src={getPathFileAssets('image', '404-Airbnb.gif')}
             alt={t('banner')}
             width={313}
             height={428}

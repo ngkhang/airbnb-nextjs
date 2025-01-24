@@ -25,7 +25,7 @@ export default function RegisterPage() {
                 <Icon name='airbnbSymbol' className='size-6' />
               </Link>
               <Image
-                src={getPathFileAssets('image', 'placeholder')}
+                src={getPathFileAssets('image', 'placeholder.svg')}
                 alt={t('banner')}
                 width={50}
                 height={100}
