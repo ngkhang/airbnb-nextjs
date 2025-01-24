@@ -3,9 +3,14 @@
     "buttons": {
       "register": "Create account",
       "login": "Login",
+      "logout": "Logout",
       "backHome": "Back to Home",
       "tryAgain": "Try Again",
-      "submitting": "Submitting"
+      "submitting": "Submitting",
+      "search": {
+        "stays": "Stays",
+        "exp": "Experiences"
+      }
     },
     "inputs": {
       "email": {
@@ -27,6 +32,53 @@
           "admin": "Admin",
           "user": "User"
         }
+      },
+      "where": {
+        "label": "Where",
+        "placeholder": "Search destinations"
+      },
+      "when": {
+        "label": "Check in - Check out",
+        "placeholder": "Add dates"
+      },
+      "who": {
+        "label": "Who",
+        "placeholder": "Add guests",
+        "options": {
+          "adults": {
+            "title": "Adults",
+            "description": "Ages 13 or above"
+          },
+          "children": {
+            "title": "Children",
+            "description": "Ages 2 - 12"
+          },
+          "infants": {
+            "title": "Infants",
+            "description": "Under 2"
+          },
+          "pets": {
+            "title": "Pets",
+            "description": "Bringing a service animal?"
+          }
+        }
+      },
+      "location": {
+        "title": "Search by location",
+        "description": "Choose places your search",
+        "placeholder": "Choose a location"
+      },
+      "region": {
+        "title": "Search by region",
+        "description": "",
+        "options": {
+          "flexible": "I'm flexible",
+          "europe": "Europe",
+          "south-korea": "South Korea",
+          "united-states": "United States",
+          "thailand": "Thailand",
+          "australia": "Australia"
+        }
       }
     }
   },
@@ -43,7 +95,67 @@
     }
   },
   "layout": {
-    "header": {},
+    "header": {
+      "host": "Airbnb your home",
+      "accountPopover": {
+        "unLogin": {
+          "top": [
+            {
+              "title": "Sign up",
+              "url": "/register"
+            },
+            {
+              "title": "Log in",
+              "url": "/login"
+            }
+          ],
+          "bottom": [
+            {
+              "title": "Gift cards",
+              "url": "/"
+            },
+            {
+              "title": "Airbnb your home",
+              "url": "/"
+            },
+            {
+              "title": "Host an experience",
+              "url": "/"
+            },
+            {
+              "title": "Help Center",
+              "url": "/"
+            }
+          ]
+        },
+        "logged": {
+          "top": [
+            {
+              "title": "Account",
+              "url": "/users/show"
+            }
+          ],
+          "bottom": [
+            {
+              "title": "Gift cards",
+              "url": "/"
+            },
+            {
+              "title": "Airbnb your home",
+              "url": "/"
+            },
+            {
+              "title": "Host an experience",
+              "url": "/"
+            },
+            {
+              "title": "Help Center",
+              "url": "/"
+            }
+          ]
+        }
+      }
+    },
     "footer": {
       "items": [
         {

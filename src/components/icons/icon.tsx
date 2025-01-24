@@ -8,6 +8,11 @@ import {
   Globe,
   EyeIcon,
   EyeOffIcon,
+  Menu,
+  CircleUserRound,
+  Search,
+  Minus,
+  Plus,
   type LucideProps,
 } from 'lucide-react';
 
@@ -31,6 +36,11 @@ const IconComponents = {
   globe: Globe,
   eye: EyeIcon,
   eyeOff: EyeOffIcon,
+  menu: Menu,
+  user: CircleUserRound,
+  search: Search,
+  minus: Minus,
+  plus: Plus,
   airbnb: Airbnb,
   airbnbBlack: AirbnbBlack,
   airbnbSymbol: AirbnbSymbol,
