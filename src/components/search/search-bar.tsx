@@ -1,15 +1,18 @@
 /* eslint-disable no-undefined */
 'use client';
 
+import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import React from 'react';
 
+import { queryKeys } from '@/constants/queryKeys';
 import ROUTES from '@/constants/routes';
 import { getPathFileAssets } from '@/helpers/fileAssets';
 import { cn } from '@/lib/utils';
+import locationService from '@/services/location.service';
 import { useSearchStore, type Guest } from '@/stores/searchStore';
 
 import Icon from '../icons/icon';
@@ -42,32 +45,6 @@ const keyMap = {
   whoOptions: ['adults', 'children', 'infants', 'pets'],
 } as const;
 
-const mockApi = {
-  locations: [
-    {
-      id: 1,
-      tenViTri: 'Quận 1',
-      tinhThanh: 'Hồ Chí Minh',
-      quocGia: 'Việt Nam',
-      hinhAnh: 'https://airbnbnew.cybersoft.edu.vn/images/vt1.jpg',
-    },
-    {
-      id: 2,
-      tenViTri: 'Cái Răng',
-      tinhThanh: 'Cần Thơ',
-      quocGia: 'Việt Nam',
-      hinhAnh: 'https://airbnbnew.cybersoft.edu.vn/images/vt2.jpg',
-    },
-    {
-      id: 3,
-      tenViTri: 'Hòn Rùa',
-      tinhThanh: 'Nha Trang',
-      quocGia: 'Việt Nam',
-      hinhAnh: 'https://airbnbnew.cybersoft.edu.vn/images/vt3.jpg',
-    },
-  ],
-};
-
 const getTotalGuestsDisplay = (guests: Guest) => {
   const total = guests.adults + guests.children;
   const parts = [];
@@ -92,6 +69,11 @@ export default function SearchBar() {
     dateRange,
     updateDate,
   } = useSearchStore();
+
+  const { data } = useQuery({
+    queryKey: [queryKeys.location],
+    queryFn: locationService.getAll,
+  });
 
   const handleSearch = () => {
     const query = `location_id=${location.id}&guest=${guests.adults}&check_in=${dateRange?.from && format(dateRange.from, 'yyyy-MM-dd')}&check_out=${dateRange?.to && format(dateRange.to, 'yyyy-MM-dd')}`;
@@ -138,7 +120,7 @@ export default function SearchBar() {
                 <Button
                   variant='outline'
                   className={cn(
-                    'flex h-full w-full flex-col items-start rounded-full border-none px-4 py-3 text-start text-sm text-[#6A6A6A] shadow-none hover:bg-[#EBEBEB] hover:text-inherit data-[state=open]:bg-[#EBEBEB] md:px-8 md:py-4 lg:hover:bg-[#EBEBEB]'
+                    'flex h-full w-full flex-col items-start rounded-full border-none px-4 py-3 text-start text-sm text-[#6A6A6A] shadow-none *:cursor-pointer hover:bg-[#EBEBEB] hover:text-inherit data-[state=open]:bg-[#EBEBEB] md:px-8 md:py-4 lg:hover:bg-[#EBEBEB]'
                   )}
                 >
                   <Label className='w-full overflow-hidden text-ellipsis font-semibold'>
@@ -168,34 +150,39 @@ export default function SearchBar() {
                       {t('ui.inputs.where.placeholder')}
                     </p>
                   </div>
-                  <Select
-                    defaultValue={
-                      location.id !== 0 ? `${location.id}` : undefined
-                    }
-                    onValueChange={(valueId) => {
-                      const location = mockApi.locations.find(
-                        (item) => item.id === Number(valueId)
-                      );
+                  {data && (
+                    <Select
+                      defaultValue={
+                        location.id !== 0 ? `${location.id}` : undefined
+                      }
+                      onValueChange={(valueId) => {
+                        const location = data.content.find(
+                          (item) => item.id === Number(valueId)
+                        );
 
-                      const title = location
-                        ? `${location.tenViTri} ${location.tinhThanh}, ${location.quocGia}`
-                        : '';
-                      updateLocation(valueId, title);
-                    }}
-                  >
-                    <SelectTrigger className='w-full rounded-xl'>
-                      <SelectValue
-                        placeholder={t('ui.inputs.where.placeholder')}
-                      />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {mockApi.locations.map((location) => (
-                        <SelectItem key={location.id} value={`${location.id}`}>
-                          {`${location.tenViTri} ${location.tinhThanh}, ${location.quocGia}`}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                        const title = location
+                          ? `${location.tenViTri} ${location.tinhThanh}, ${location.quocGia}`
+                          : '';
+                        updateLocation(valueId, title);
+                      }}
+                    >
+                      <SelectTrigger className='w-full rounded-xl'>
+                        <SelectValue
+                          placeholder={t('ui.inputs.where.placeholder')}
+                        />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {data.content.map((location) => (
+                          <SelectItem
+                            key={location.id}
+                            value={`${location.id}`}
+                          >
+                            {`${location.tenViTri} ${location.tinhThanh}, ${location.quocGia}`}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  )}
                 </div>
 
                 {/* Search by Region */}
@@ -245,7 +232,7 @@ export default function SearchBar() {
                 <Button
                   variant='outline'
                   className={cn(
-                    'flex h-full w-full flex-col items-start rounded-full border-none px-4 py-3 text-start text-sm text-[#6A6A6A] shadow-none hover:bg-[#EBEBEB] hover:text-inherit data-[state=open]:bg-[#EBEBEB] md:px-8 md:py-4 lg:hover:bg-[#EBEBEB]'
+                    'flex h-full w-full flex-col items-start rounded-full border-none px-4 py-3 text-start text-sm text-[#6A6A6A] shadow-none *:cursor-pointer hover:bg-[#EBEBEB] hover:text-inherit data-[state=open]:bg-[#EBEBEB] md:px-8 md:py-4 lg:hover:bg-[#EBEBEB]'
                   )}
                 >
                   <Label className='w-full overflow-hidden text-ellipsis font-semibold'>
@@ -289,7 +276,7 @@ export default function SearchBar() {
                 <Button
                   variant='outline'
                   className={cn(
-                    'flex h-full w-full flex-col items-start rounded-full border-none px-4 py-3 text-start text-sm text-[#6A6A6A] shadow-none hover:bg-[#EBEBEB] hover:text-inherit data-[state=open]:bg-[#EBEBEB] md:px-8 md:py-4 lg:hover:bg-[#EBEBEB]'
+                    'flex h-full w-full flex-col items-start rounded-full border-none px-4 py-3 text-start text-sm text-[#6A6A6A] shadow-none *:cursor-pointer hover:bg-[#EBEBEB] hover:text-inherit data-[state=open]:bg-[#EBEBEB] md:px-8 md:py-4 lg:hover:bg-[#EBEBEB]'
                   )}
                 >
                   <Label className='w-full overflow-hidden text-ellipsis font-semibold'>
