@@ -33,6 +33,7 @@ const config: Config = {
         airbnb: ['var(--font-airbnb)'],
       },
       colors: {
+        'brand-color': 'hsl(var(--brand-color))',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {
@@ -80,7 +81,7 @@ const config: Config = {
         sm: 'calc(var(--radius) - 4px)',
       },
       backgroundImage: {
-        linear:
+        'brand-linear':
           'linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%)',
       },
     },

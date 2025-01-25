@@ -13,6 +13,7 @@ import {
   Search,
   Minus,
   Plus,
+  SlidersHorizontal,
   type LucideProps,
 } from 'lucide-react';
 
@@ -41,6 +42,7 @@ const IconComponents = {
   search: Search,
   minus: Minus,
   plus: Plus,
+  slidersHorizontal: SlidersHorizontal,
   airbnb: Airbnb,
   airbnbBlack: AirbnbBlack,
   airbnbSymbol: AirbnbSymbol,

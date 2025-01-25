@@ -10,7 +10,9 @@
       "search": {
         "stays": "Stays",
         "exp": "Experiences"
-      }
+      },
+      "filter": "Filter",
+      "switch": "Display total before taxes"
     },
     "inputs": {
       "email": {
@@ -196,6 +198,258 @@
       ],
       "copyright": "2024 Airbnb, Inc.",
       "subs": ["Terms", "Sitemap", "Privacy", "Your Privacy Choices"]
+    },
+    "categories": {
+      "items": [
+        {
+          "fileName": "icons.png",
+          "title": "Icons"
+        },
+        {
+          "fileName": "rooms.jpg",
+          "title": "Rooms"
+        },
+        {
+          "fileName": "amazing-views.jpg",
+          "title": "Amazing views"
+        },
+        {
+          "fileName": "amazing-pools.jpg",
+          "title": "Amazing pools"
+        },
+        {
+          "fileName": "earth-homes.jpg",
+          "title": "Earth homes"
+        },
+        {
+          "fileName": "windmills.jpg",
+          "title": "Windmills"
+        },
+        {
+          "fileName": "countryside.jpg",
+          "title": "Countryside"
+        },
+        {
+          "fileName": "treehouses.jpg",
+          "title": "Treehouses"
+        },
+        {
+          "fileName": "tiny-homes.jpg",
+          "title": "Tiny homes"
+        },
+        {
+          "fileName": "mansions.jpg",
+          "title": "Mansions"
+        },
+        {
+          "fileName": "trending.jpg",
+          "title": "Trending"
+        },
+        {
+          "fileName": "cabins.jpg",
+          "title": "Cabins"
+        },
+        {
+          "fileName": "lakefront.jpg",
+          "title": "Lakefront"
+        },
+        {
+          "fileName": "grand-pianos.jpg",
+          "title": "Grand pianos"
+        },
+        {
+          "fileName": "omg!.jpg",
+          "title": "OMG!"
+        },
+        {
+          "fileName": "islands.jpg",
+          "title": "Islands"
+        },
+        {
+          "fileName": "a-frames.jpg",
+          "title": "A-frames"
+        },
+        {
+          "fileName": "castles.jpg",
+          "title": "Castles"
+        },
+        {
+          "fileName": "luxe.jpg",
+          "title": "Luxe"
+        },
+        {
+          "fileName": "beachfront.jpg",
+          "title": "Beachfront"
+        },
+        {
+          "fileName": "containers.png",
+          "title": "Containers"
+        },
+        {
+          "fileName": "hanoks.jpg",
+          "title": "Hanoks"
+        },
+        {
+          "fileName": "shepherd's-huts.jpg",
+          "title": "Shepherd's huts"
+        },
+        {
+          "fileName": "farms.jpg",
+          "title": "Farms"
+        },
+        {
+          "fileName": "beach.jpg",
+          "title": "Beach"
+        },
+        {
+          "fileName": "design.jpg",
+          "title": "Design"
+        },
+        {
+          "fileName": "domes.jpg",
+          "title": "Domes"
+        },
+        {
+          "fileName": "arctic.jpg",
+          "title": "Arctic"
+        },
+        {
+          "fileName": "caves.jpg",
+          "title": "Caves"
+        },
+        {
+          "fileName": "dammusi.jpg",
+          "title": "Dammusi"
+        },
+        {
+          "fileName": "chef's-kitchens.jpg",
+          "title": "Chef's kitchens"
+        },
+        {
+          "fileName": "ski-in-out.jpg",
+          "title": "Ski-in/out"
+        },
+        {
+          "fileName": "creative-spaces.jpg",
+          "title": "Creative spaces"
+        },
+        {
+          "fileName": "ryokans.jpg",
+          "title": "Ryokans"
+        },
+        {
+          "fileName": "golfing.jpg",
+          "title": "Golfing"
+        },
+        {
+          "fileName": "play.jpg",
+          "title": "Play"
+        },
+        {
+          "fileName": "barns.jpg",
+          "title": "Barns"
+        },
+        {
+          "fileName": "off-the-grid.jpg",
+          "title": "Off-the-grid"
+        },
+        {
+          "fileName": "minsus.jpg",
+          "title": "Minsus"
+        },
+        {
+          "fileName": "tropical.jpg",
+          "title": "Tropical"
+        },
+        {
+          "fileName": "vineyards.jpg",
+          "title": "Vineyards"
+        },
+        {
+          "fileName": "new.jpg",
+          "title": "New"
+        },
+        {
+          "fileName": "top-cities.jpg",
+          "title": "Top cities"
+        },
+        {
+          "fileName": "camping.jpg",
+          "title": "Camping"
+        },
+        {
+          "fileName": "national-parks.jpg",
+          "title": "National parks"
+        },
+        {
+          "fileName": "camper-vans.jpg",
+          "title": "Camper vans"
+        },
+        {
+          "fileName": "surfing.jpg",
+          "title": "Surfing"
+        },
+        {
+          "fileName": "bed-&-breakfasts.jpg",
+          "title": "Bed & breakfasts"
+        },
+        {
+          "fileName": "historical-homes.jpg",
+          "title": "Historical homes"
+        },
+        {
+          "fileName": "skiing.jpg",
+          "title": "Skiing"
+        },
+        {
+          "fileName": "top-of-the-world.jpg",
+          "title": "Top of the world"
+        },
+        {
+          "fileName": "cycladic-homes.jpg",
+          "title": "Cycladic homes"
+        },
+        {
+          "fileName": "casas-particulares.jpg",
+          "title": "Casas particulares"
+        },
+        {
+          "fileName": "towers.jpg",
+          "title": "Towers"
+        },
+        {
+          "fileName": "yurts.jpg",
+          "title": "Yurts"
+        },
+        {
+          "fileName": "desert.jpg",
+          "title": "Desert"
+        },
+        {
+          "fileName": "boats.jpg",
+          "title": "Boats"
+        },
+        {
+          "fileName": "adapted.jpg",
+          "title": "Adapted"
+        },
+        {
+          "fileName": "houseboats.jpg",
+          "title": "Houseboats"
+        },
+        {
+          "fileName": "trulli.jpg",
+          "title": "Trulli"
+        },
+        {
+          "fileName": "riads.jpg",
+          "title": "Riads"
+        },
+        {
+          "fileName": "lake.jpg",
+          "title": "Lake"
+        }
+      ]
     }
   },
   "pages": {

@@ -6,15 +6,24 @@
   .text-balance {
     text-wrap: balance;
   }
+
+  .display-center {
+    @apply flex items-center justify-center;
+  }
+
+  .button-brand-color {
+    @apply bg-brand-color text-white transition-colors hover:bg-brand-linear;
+  }
 }
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
+    --brand-color: 349.15 100% 60.98%; /* #FF385C */
+    --background: 0 0% 100%; /* #FFFFFF */
+    --foreground: 0 0% 13.33%; /* #222222 */
+    --card: 0 0% 100%; /* #FFFFFF */
     --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
+    --popover: 0 0% 100%; /* #FFFFFF */
     --popover-foreground: 222.2 84% 4.9%;
     --primary: 222.2 47.4% 11.2%;
     --primary-foreground: 210 40% 98%;
@@ -22,21 +31,22 @@
     --secondary-foreground: 222.2 47.4% 11.2%;
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
+    --accent: 0, 0%, 97%; /* #F7F7F7 */
     --accent-foreground: 222.2 47.4% 11.2%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
+    --border: 0 0% 86.67%; /* #DDDDDD */
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
+    --chart-1: 12 76% 61%; /* #EF7C2C */
+    --chart-2: 173 58% 39%; /* #23A695 */
+    --chart-3: 197 37% 24%; /* #1E5A6E */
+    --chart-4: 43 74% 66%; /* #F6B041 */
+    --chart-5: 27 87% 67%; /* #F79D3D */
     --radius: 0.5rem;
   }
   .dark {
+    --brand-color: 349.15 100% 60.98%; /* #FF385C */
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
     --card: 222.2 84% 4.9%;
@@ -73,5 +83,15 @@
   }
   body {
     @apply h-full min-h-screen bg-background font-airbnb text-foreground;
+  }
+}
+
+@layer components {
+  .container {
+    @apply mx-0 max-w-none;
+  }
+
+  .button-default {
+    @apply display-center space-x-2 rounded-xl border border-input bg-background p-4 shadow-sm hover:border-foreground hover:bg-accent hover:text-accent-foreground;
   }
 }

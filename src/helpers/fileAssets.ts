@@ -7,6 +7,7 @@ type AssetType = keyof typeof typeAssets;
 const typeAssets = {
   image: '/images',
   mapRegion: '/images/map-region',
+  categories: '/images/categories',
 } as const;
 
 /**
