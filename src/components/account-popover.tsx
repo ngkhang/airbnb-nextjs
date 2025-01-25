@@ -25,28 +25,16 @@ export default function AccountPopover() {
   return (
     <Popover onOpenChange={() => {}}>
       <PopoverTrigger asChild>
-        <Button
-          variant='outline'
-          className='flex h-fit items-center rounded-full px-4'
-        >
+        <Button variant='outline' className='button-default h-fit rounded-full'>
           <Icon name='menu' />
           <Avatar className='h-full w-auto'>
-            {user && user.avatar ? (
-              <>
-                <AvatarImage className='size-6' src={user.avatar} />
-                <AvatarFallback>CN</AvatarFallback>
-              </>
-            ) : (
-              <>
-                <AvatarImage
-                  className='size-6'
-                  src={'./assets/images/avatar-blank.jpg'}
-                />
-                <AvatarFallback>
-                  <Icon name='user' size='18' />
-                </AvatarFallback>
-              </>
-            )}
+            <AvatarImage
+              sizes='18'
+              src={user && user.avatar ? user.avatar : ''}
+            />
+            <AvatarFallback>
+              <Icon name='user' size='18' />
+            </AvatarFallback>
           </Avatar>
         </Button>
       </PopoverTrigger>

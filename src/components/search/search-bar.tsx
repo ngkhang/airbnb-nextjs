@@ -122,7 +122,7 @@ export default function SearchBar() {
         {/* Button search */}
         <div className='center ml-4 mr-2 md:order-2 md:ml-2 md:mr-4'>
           <Button
-            className='size-8 rounded-full bg-transparent p-0 text-black shadow-none hover:bg-primary/70 hover:text-[#6A6A6A] md:size-10 md:bg-primary md:p-5 md:text-white md:hover:text-white'
+            className='button-brand-color size-8 rounded-full p-0 md:size-10 md:p-5'
             onClick={handleSearch}
           >
             <Icon name='search' />
