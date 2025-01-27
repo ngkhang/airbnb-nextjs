@@ -14,6 +14,9 @@ import {
   Minus,
   Plus,
   SlidersHorizontal,
+  Heart,
+  Star,
+  ImageOff,
   type LucideProps,
 } from 'lucide-react';
 
@@ -43,6 +46,9 @@ const IconComponents = {
   minus: Minus,
   plus: Plus,
   slidersHorizontal: SlidersHorizontal,
+  heart: Heart,
+  star: Star,
+  imageOff: ImageOff,
   airbnb: Airbnb,
   airbnbBlack: AirbnbBlack,
   airbnbSymbol: AirbnbSymbol,

@@ -13,7 +13,9 @@ const ROUTES = {
     PROFILE: '/users/show/profile-info',
   },
   ROOM: {
-    LOCATION: '/rooms/location',
+    DETAIL: (roomId: string | number) => `/rooms/${roomId}`,
+    LOCATION: (locationId: string | number) =>
+      `/rooms/location?locationId=${locationId}`,
   },
 } as const;
 

@@ -450,10 +450,904 @@
           "title": "Lake"
         }
       ]
+    },
+    "rooms": {
+      "khach": "Guest",
+      "phongNgu": "Bedroom",
+      "giuong": "Bed",
+      "phongTam": "Bathroom"
     }
   },
   "pages": {
-    "home": {},
+    "home": {
+      "explore": {
+        "title": "Explore Popular Places",
+        "description": "Recommend Nearby Places"
+      },
+      "inspiration": {
+        "title": "Inspiration for future getaways",
+        "items": {
+          "popular": {
+            "title": "Popular",
+            "items": [
+              {
+                "description": "Pet-friendly rentals",
+                "title": "Canmore"
+              },
+              {
+                "description": "Apartment rentals",
+                "title": "Benalmádena"
+              },
+              {
+                "description": "Beachfront rentals",
+                "title": "Marbella"
+              },
+              {
+                "description": "House rentals",
+                "title": "Mijas"
+              },
+              {
+                "description": "Cottage rentals",
+                "title": "Prescott"
+              },
+              {
+                "description": "Apartment rentals",
+                "title": "Scottsdale"
+              },
+              {
+                "description": "Condo rentals",
+                "title": "Tucson"
+              },
+              {
+                "description": "Cabin rentals",
+                "title": "Jasper"
+              },
+              {
+                "description": "Cabin rentals",
+                "title": "Mountain View"
+              },
+              {
+                "description": "Cottage rentals",
+                "title": "Devonport"
+              },
+              {
+                "description": "Pet-friendly rentals",
+                "title": "Mallacoota"
+              },
+              {
+                "description": "Vacation rentals",
+                "title": "Ibiza"
+              },
+              {
+                "description": "Beach house rentals",
+                "title": "Anaheim"
+              },
+              {
+                "description": "Cabin rentals",
+                "title": "Monterey"
+              },
+              {
+                "description": "Cottage rentals",
+                "title": "Paso Robles"
+              },
+              {
+                "description": "Pet-friendly rentals",
+                "title": "Santa Barbara"
+              },
+              {
+                "description": "Pet-friendly rentals",
+                "title": "Sonoma"
+              },
+              {
+                "description": "Beachfront rentals",
+                "title": "La Serena"
+              },
+              {
+                "description": "House rentals",
+                "title": "Dubai"
+              },
+              {
+                "description": "Apartment rentals",
+                "title": "Birmingham"
+              },
+              {
+                "description": "Chalet rentals",
+                "title": "Brighton"
+              },
+              {
+                "description": "Vacation rentals",
+                "title": "Bude"
+              },
+              {
+                "description": "Vacation rentals",
+                "title": "Newcastle upon Tyne"
+              },
+              {
+                "description": "Cabin rentals",
+                "title": "Padstow"
+              }
+            ]
+          },
+          "arts-culture": {
+            "title": "Arts & culture",
+            "items": [
+              {
+                "description": "Condo rentals",
+                "title": "Phoenix"
+              },
+              {
+                "description": "House rentals",
+                "title": "Hot Springs"
+              },
+              {
+                "description": "Beach house rentals",
+                "title": "Los Angeles"
+              },
+              {
+                "description": "Beach condo rentals",
+                "title": "San Diego"
+              },
+              {
+                "description": "Vacation rentals",
+                "title": "San Francisco"
+              },
+              {
+                "description": "Vacation rentals",
+                "title": "Barcelona"
+              },
+              {
+                "description": "Vacation rentals",
+                "title": "Prague"
+              },
+              {
+                "description": "Apartment rentals",
+                "title": "Washington"
+              },
+              {
+                "description": "Apartment rentals",
+                "title": "Keswick"
+              },
+              {
+                "description": "Beachfront rentals",
+                "title": "London"
+              },
+              {
+                "description": "Vacation rentals",
+                "title": "Scarborough"
+              },
+              {
+                "description": "Cottage rentals",
+                "title": "Sherwood Forest"
+              },
+              {
+                "description": "Cottage rentals",
+                "title": "York"
+              },
+              {
+                "description": "Villa rentals",
+                "title": "Paris"
+              },
+              {
+                "description": "Rentals with pools",
+                "title": "Rhodes"
+              },
+              {
+                "description": "Vacation rentals",
+                "title": "Nashville"
+              },
+              {
+                "description": "Apartment rentals",
+                "title": "Dublin"
+              },
+              {
+                "description": "Condo rentals",
+                "title": "Florence"
+              },
+              {
+                "description": "Beach house rentals",
+                "title": "Rome"
+              },
+              {
+                "description": "Beachfront rentals",
+                "title": "Lisbon"
+              },
+              {
+                "description": "Pet-friendly rentals",
+                "title": "Grand Isle"
+              },
+              {
+                "description": "Apartment rentals",
+                "title": "New Orleans"
+              },
+              {
+                "description": "Vacation rentals",
+                "title": "Martha's Vineyard"
+              },
+              {
+                "description": "Condo rentals",
+                "title": "South Haven"
+              }
+            ]
+          },
+          "outdoors": {
+            "title": "Outdoors",
+            "items": [
+              {
+                "description": "Pet-friendly rentals",
+                "title": "Lake Martin"
+              },
+              {
+                "description": "Chalet rentals",
+                "title": "Banff"
+              },
+              {
+                "description": "Villa rentals",
+                "title": "Nerja"
+              },
+              {
+                "description": "Cabin rentals",
+                "title": "Greer"
+              },
+              {
+                "description": "House rentals",
+                "title": "Lake Havasu City"
+              },
+              {
+                "description": "Vacation rentals",
+                "title": "Lake Powell"
+              },
+              {
+                "description": "Vacation rentals",
+                "title": "North Rim"
+              },
+              {
+                "description": "Vacation rentals",
+                "title": "Payson"
+              },
+              {
+                "description": "Cabin rentals",
+                "title": "Pinetop-Lakeside"
+              },
+              {
+                "description": "Cabin rentals",
+                "title": "Red Rock"
+              },
+              {
+                "description": "Pet-friendly rentals",
+                "title": "Dinner Plain"
+              },
+              {
+                "description": "Vacation rentals",
+                "title": "Streaky Bay"
+              },
+              {
+                "description": "Cabin rentals",
+                "title": "Emerald Lake"
+              },
+              {
+                "description": "Condo rentals",
+                "title": "Vancouver Island"
+              },
+              {
+                "description": "Villa rentals",
+                "title": "Victoria"
+              },
+              {
+                "description": "Cabin rentals",
+                "title": "Idyllwild-Pine Cove"
+              },
+              {
+                "description": "Vacation rentals",
+                "title": "Mammoth Lakes"
+              },
+              {
+                "description": "Apartment rentals",
+                "title": "Palm Desert"
+              },
+              {
+                "description": "Vacation rentals",
+                "title": "Shaver Lake"
+              },
+              {
+                "description": "Vacation rentals",
+                "title": "South Lake Tahoe"
+              },
+              {
+                "description": "Cabin rentals",
+                "title": "Cultus Lake"
+              },
+              {
+                "description": "Vacation rentals",
+                "title": "Georgian Bay"
+              },
+              {
+                "description": "Cottage rentals",
+                "title": "Manitoulin Island"
+              },
+              {
+                "description": "Cottage rentals",
+                "title": "Ottawa River"
+              }
+            ]
+          },
+          "mountains": {
+            "title": "Mountains",
+            "items": [
+              {
+                "description": "House rentals",
+                "title": "Mentone"
+              },
+              {
+                "description": "Villa rentals",
+                "title": "Sedona"
+              },
+              {
+                "description": "Condo rentals",
+                "title": "Helen"
+              },
+              {
+                "description": "Vacation rentals",
+                "title": "Pine Mountain"
+              },
+              {
+                "description": "Cabin rentals",
+                "title": "Stone Mountain"
+              },
+              {
+                "description": "House rentals",
+                "title": "Island Park"
+              },
+              {
+                "description": "House rentals",
+                "title": "Blue Mountains"
+              },
+              {
+                "description": "Cabin rentals",
+                "title": "Asheville"
+              },
+              {
+                "description": "Cottage rentals",
+                "title": "Blowing Rock"
+              },
+              {
+                "description": "Vacation rentals",
+                "title": "Boone"
+              },
+              {
+                "description": "Vacation rentals",
+                "title": "Hochatown"
+              },
+              {
+                "description": "Vacation rentals",
+                "title": "Pigeon Forge"
+              },
+              {
+                "description": "Vacation rentals",
+                "title": "Townsend"
+              },
+              {
+                "description": "Vacation rentals",
+                "title": "Wears Valley"
+              },
+              {
+                "description": "Vacation rentals",
+                "title": "Cabins"
+              }
+            ]
+          },
+          "beach": {
+            "title": "Beach",
+            "items": [
+              {
+                "description": "Beachfront rentals",
+                "title": "Dauphin Island"
+              },
+              {
+                "description": "Vacation rentals",
+                "title": "Fort Morgan"
+              },
+              {
+                "description": "Vacation rentals",
+                "title": "Gulf Shores"
+              },
+              {
+                "description": "Vacation rentals",
+                "title": "Bruny Island"
+              },
+              {
+                "description": "Beach house rentals",
+                "title": "Crescent Head"
+              },
+              {
+                "description": "Vacation rentals",
+                "title": "Gerringong"
+              },
+              {
+                "description": "House rentals",
+                "title": "Hamilton Island"
+              },
+              {
+                "description": "Vacation rentals",
+                "title": "Lancelin"
+              },
+              {
+                "description": "Beach condo rentals",
+                "title": "Melbourne Beach"
+              },
+              {
+                "description": "Beachfront rentals",
+                "title": "Moonta Bay"
+              },
+              {
+                "description": "Cottage rentals",
+                "title": "Ocean Grove"
+              },
+              {
+                "description": "Cottage rentals",
+                "title": "Majorca"
+              },
+              {
+                "description": "House rentals",
+                "title": "Big Sur"
+              },
+              {
+                "description": "Vacation rentals",
+                "title": "Bodega Bay"
+              },
+              {
+                "description": "Pet-friendly rentals",
+                "title": "Cambria"
+              },
+              {
+                "description": "Vacation rentals",
+                "title": "Cayucos"
+              },
+              {
+                "description": "Apartment rentals",
+                "title": "Huntington Beach"
+              },
+              {
+                "description": "Vacation rentals",
+                "title": "la Jolla Shores Beach"
+              },
+              {
+                "description": "Bungalow rentals",
+                "title": "Laguna Beach"
+              },
+              {
+                "description": "Condo rentals",
+                "title": "Long Beach"
+              },
+              {
+                "description": "Condo rentals",
+                "title": "Malibu"
+              },
+              {
+                "description": "Beachfront rentals",
+                "title": "Mission Beach"
+              },
+              {
+                "description": "Villa rentals",
+                "title": "Newport Beach"
+              },
+              {
+                "description": "Cottage rentals",
+                "title": "Oceanside"
+              }
+            ]
+          },
+          "unique-stays": {
+            "title": "Unique stays",
+            "items": [
+              {
+                "description": "United States",
+                "title": "Cabins"
+              },
+              {
+                "description": "United States",
+                "title": "Treehouses"
+              },
+              {
+                "description": "United States",
+                "title": "Glamping"
+              },
+              {
+                "description": "United States",
+                "title": "Tiny Houses"
+              },
+              {
+                "description": "United States",
+                "title": "Beach Houses"
+              },
+              {
+                "description": "United States",
+                "title": "Campers and RVs"
+              },
+              {
+                "description": "United States",
+                "title": "Lakehouses"
+              },
+              {
+                "description": "United States",
+                "title": "Yurt Rentals"
+              },
+              {
+                "description": "United Kingdom",
+                "title": "Yurt Rentals"
+              },
+              {
+                "description": "United States",
+                "title": "Castle Rentals"
+              },
+              {
+                "description": "United States",
+                "title": "Houseboats"
+              },
+              {
+                "description": "United Kingdom",
+                "title": "Holiday Caravans"
+              },
+              {
+                "description": "United States",
+                "title": "Private Island Rentals"
+              },
+              {
+                "description": "United States",
+                "title": "Farm Houses"
+              },
+              {
+                "description": "United Kingdom",
+                "title": "Farm Cottages"
+              },
+              {
+                "description": "Australia",
+                "title": "Cabin Rentals"
+              },
+              {
+                "description": "United Kingdom",
+                "title": "Luxury Cabins"
+              },
+              {
+                "description": "United States",
+                "title": "Luxury Cabins"
+              },
+              {
+                "description": "United Kingdom",
+                "title": "Holiday Chalets"
+              },
+              {
+                "description": "United States",
+                "title": "Cottage Rentals"
+              },
+              {
+                "description": "United Kingdom",
+                "title": "Holiday Cottages"
+              },
+              {
+                "description": "United States",
+                "title": "Mansion Rentals"
+              },
+              {
+                "description": "United Kingdom",
+                "title": "Villa Rentals"
+              },
+              {
+                "description": "United Kingdom",
+                "title": "Holiday Bungalows"
+              }
+            ]
+          },
+          "categories": {
+            "title": "Categories",
+            "items": [
+              {
+                "description": "",
+                "title": "Amazing pools"
+              },
+              {
+                "description": "",
+                "title": "Arctic"
+              },
+              {
+                "description": "",
+                "title": "Camping"
+              },
+              {
+                "description": "",
+                "title": "Campers"
+              },
+              {
+                "description": "",
+                "title": "Castles"
+              },
+              {
+                "description": "",
+                "title": "Containers"
+              },
+              {
+                "description": "",
+                "title": "Countryside"
+              },
+              {
+                "description": "",
+                "title": "Design"
+              },
+              {
+                "description": "",
+                "title": "Earth homes"
+              },
+              {
+                "description": "",
+                "title": "Farms"
+              },
+              {
+                "description": "",
+                "title": "National parks"
+              },
+              {
+                "description": "",
+                "title": "Vineyards"
+              },
+              {
+                "description": "",
+                "title": "OMG!"
+              },
+              {
+                "description": "",
+                "title": "Tiny homes"
+              },
+              {
+                "description": "",
+                "title": "Towers"
+              },
+              {
+                "description": "",
+                "title": "Windmills"
+              },
+              {
+                "description": "",
+                "title": "Luxe"
+              }
+            ]
+          },
+          "things-to-do": {
+            "title": "Things to do",
+            "items": [
+              {
+                "description": "England",
+                "title": "London"
+              },
+              {
+                "description": "Île-de-France",
+                "title": "Paris"
+              },
+              {
+                "description": "New York",
+                "title": "New York"
+              },
+              {
+                "description": "Catalonia",
+                "title": "Barcelona"
+              },
+              {
+                "description": "İstanbul",
+                "title": "İstanbul"
+              },
+              {
+                "description": "Indonesia",
+                "title": "Bali"
+              },
+              {
+                "description": "North Holland",
+                "title": "Amsterdam"
+              },
+              {
+                "description": "Florida",
+                "title": "Miami"
+              },
+              {
+                "description": "Community of Madrid",
+                "title": "Madrid"
+              },
+              {
+                "description": "California",
+                "title": "Los Angeles"
+              },
+              {
+                "description": "Lazio",
+                "title": "Rome"
+              },
+              {
+                "description": "Lisbon",
+                "title": "Lisbon"
+              },
+              {
+                "description": "Tokyo Prefecture",
+                "title": "Tokyo"
+              },
+              {
+                "description": "Vienna",
+                "title": "Vienna"
+              },
+              {
+                "description": "Greece",
+                "title": "Athens"
+              },
+              {
+                "description": "Czechia",
+                "title": "Prague"
+              },
+              {
+                "description": "Florida",
+                "title": "Orlando"
+              },
+              {
+                "description": "Quintana Roo",
+                "title": "Cancún"
+              },
+              {
+                "description": "Greece",
+                "title": "Santorini"
+              },
+              {
+                "description": "Mexico City",
+                "title": "Mexico City"
+              },
+              {
+                "description": "Veneto",
+                "title": "Venice"
+              },
+              {
+                "description": "Quintana Roo",
+                "title": "Playa del Carmen"
+              },
+              {
+                "description": "California",
+                "title": "San Francisco"
+              },
+              {
+                "description": "Nevada",
+                "title": "Las Vegas"
+              }
+            ]
+          },
+          "travel-tips-inspiration": {
+            "title": "Travel tips & inspiration",
+            "items": [
+              {
+                "description": "Tips and inspiration",
+                "title": "Family travel hub"
+              },
+              {
+                "description": "Get there for less",
+                "title": "Family budget travel"
+              },
+              {
+                "description": "Make it special without making it spendy",
+                "title": "Vacation ideas for any budget"
+              },
+              {
+                "description": "How to take the kids to Europe for less",
+                "title": "Travel Europe on a budget"
+              },
+              {
+                "description": "Explore nature with the family",
+                "title": "Outdoor adventure"
+              },
+              {
+                "description": "Must-see parks for family travel",
+                "title": "Bucket list national parks"
+              },
+              {
+                "description": "Check out these family-friendly hikes",
+                "title": "Kid-friendly state parks"
+              }
+            ]
+          },
+          "airbnb-friendly-apartments": {
+            "title": "Airbnb-friendly apartments",
+            "items": [
+              {
+                "description": "Georgia",
+                "title": "Atlanta Metro"
+              },
+              {
+                "description": "Georgia",
+                "title": "Augusta"
+              },
+              {
+                "description": "Texas",
+                "title": "Austin Metro"
+              },
+              {
+                "description": "Alabama",
+                "title": "Birmingham"
+              },
+              {
+                "description": "Idaho",
+                "title": "Boise"
+              },
+              {
+                "description": "Massachusetts",
+                "title": "Boston Metro"
+              },
+              {
+                "description": "Colorado",
+                "title": "Boulder"
+              },
+              {
+                "description": "North Carolina",
+                "title": "Charlotte"
+              },
+              {
+                "description": "Ohio",
+                "title": "Cincinnati"
+              },
+              {
+                "description": "South Carolina",
+                "title": "Columbia"
+              },
+              {
+                "description": "Ohio",
+                "title": "Columbus"
+              },
+              {
+                "description": "Texas",
+                "title": "Dallas"
+              },
+              {
+                "description": "Colorado",
+                "title": "Denver"
+              },
+              {
+                "description": "Texas",
+                "title": "Fort Worth"
+              },
+              {
+                "description": "Kentucky",
+                "title": "Frankfort"
+              },
+              {
+                "description": "Florida",
+                "title": "Gainesville"
+              },
+              {
+                "description": "Colorado",
+                "title": "Greeley"
+              },
+              {
+                "description": "South Carolina",
+                "title": "Greenville-Greer"
+              },
+              {
+                "description": "Connecticut",
+                "title": "Hartford"
+              },
+              {
+                "description": "New Jersey",
+                "title": "Hoboken"
+              },
+              {
+                "description": "Texas",
+                "title": "Houston Metro"
+              },
+              {
+                "description": "Indiana",
+                "title": "Indianapolis"
+              },
+              {
+                "description": "Florida",
+                "title": "Jacksonville"
+              },
+              {
+                "description": "Washington",
+                "title": "Lacey"
+              }
+            ]
+          }
+        }
+      }
+    },
     "auth": {
       "shared": {
         "footer": {

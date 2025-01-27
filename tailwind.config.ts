@@ -33,7 +33,7 @@ const config: Config = {
         airbnb: ['var(--font-airbnb)'],
       },
       colors: {
-        'brand-color': 'hsl(var(--brand-color))',
+        brand: 'hsl(var(--brand))',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {

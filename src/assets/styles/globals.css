@@ -11,14 +11,14 @@
     @apply flex items-center justify-center;
   }
 
-  .button-brand-color {
-    @apply bg-brand-color text-white transition-colors hover:bg-brand-linear;
+  .button-brand {
+    @apply bg-brand text-white transition-colors hover:bg-brand-linear;
   }
 }
 
 @layer base {
   :root {
-    --brand-color: 349.15 100% 60.98%; /* #FF385C */
+    --brand: 349.15 100% 60.98%; /* #FF385C */
     --background: 0 0% 100%; /* #FFFFFF */
     --foreground: 0 0% 13.33%; /* #222222 */
     --card: 0 0% 100%; /* #FFFFFF */
@@ -46,7 +46,7 @@
     --radius: 0.5rem;
   }
   .dark {
-    --brand-color: 349.15 100% 60.98%; /* #FF385C */
+    --brand: 349.15 100% 60.98%; /* #FF385C */
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
     --card: 222.2 84% 4.9%;

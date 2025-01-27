@@ -12,6 +12,27 @@ const PATH_REQUEST_I18N = './src/lib/i18n/request.ts';
 const withNextIntl = createNextIntlPlugin(PATH_REQUEST_I18N);
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  images: {
+    localPatterns: [
+      {
+        pathname: '/images/**',
+        search: ''
+      }
+    ],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'airbnbnew.cybersoft.edu.vn',
+        pathname: '*'
+      },
+      {
+        protocol: 'https',
+        hostname: '**',
+        pathname: '**'
+      },
+    ]
+  }
+};
 
 export default withNextIntl(nextConfig);
