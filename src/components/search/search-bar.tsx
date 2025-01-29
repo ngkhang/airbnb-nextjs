@@ -76,8 +76,8 @@ export default function SearchBar() {
   });
 
   const handleSearch = () => {
-    const query = `location_id=${location.id}&guest=${guests.adults}&check_in=${dateRange?.from && format(dateRange.from, 'yyyy-MM-dd')}&check_out=${dateRange?.to && format(dateRange.to, 'yyyy-MM-dd')}`;
-    router.push(`${ROUTES.ROOM.LOCATION}?${query}`);
+    const query = `guest=${guests.adults}&check_in=${dateRange?.from && format(dateRange.from, 'yyyy-MM-dd')}&check_out=${dateRange?.to && format(dateRange.to, 'yyyy-MM-dd')}`;
+    router.push(`${ROUTES.ROOM.LOCATION(location.id)}&${query}`);
   };
 
   return (
@@ -104,7 +104,7 @@ export default function SearchBar() {
         {/* Button search */}
         <div className='center ml-4 mr-2 md:order-2 md:ml-2 md:mr-4'>
           <Button
-            className='button-brand-color size-8 rounded-full p-0 md:size-10 md:p-5'
+            className='button-brand size-8 rounded-full p-0 md:size-10 md:p-5'
             onClick={handleSearch}
           >
             <Icon name='search' />

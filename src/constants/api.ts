@@ -10,7 +10,7 @@ export const api = {
   rooms: {
     getAll: '/phong-thue',
     getById: (roomId: number) => `/phong-thue/${roomId}`,
-    getByLocationId: (locationId: number) =>
+    getByLocationId: (locationId: number | string) =>
       `/phong-thue/lay-phong-theo-vi-tri?maViTri=${locationId}`,
     getPagination: (pageIndex: number, pageSize: number) =>
       `/phong-thue/phan-trang-tim-kiem?pageIndex=${pageIndex}&pageSize=${pageSize}`,
