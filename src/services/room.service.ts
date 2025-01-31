@@ -15,6 +15,14 @@ const roomService = {
     );
     return data.payload;
   },
+  getByRoomId: async (
+    roomId: number | string
+  ): Promise<EntitySuccessPayload<Room>> => {
+    const data = await http.get<EntitySuccessPayload<Room>>(
+      api.rooms.getById(roomId)
+    );
+    return data.payload;
+  },
 };
 
 export default roomService;

@@ -8,6 +8,7 @@ const typeAssets = {
   image: '/images',
   mapRegion: '/images/map-region',
   categories: '/images/categories',
+  bedRooms: '/images/bedRooms',
 } as const;
 
 /**

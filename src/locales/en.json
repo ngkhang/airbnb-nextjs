@@ -7,12 +7,14 @@
       "backHome": "Back to Home",
       "tryAgain": "Try Again",
       "submitting": "Submitting",
+      "reverse": "Reverse",
       "search": {
         "stays": "Stays",
         "exp": "Experiences"
       },
       "filter": "Filter",
-      "switch": "Display total before taxes"
+      "switch": "Display total before taxes",
+      "save": "Save"
     },
     "inputs": {
       "email": {
@@ -82,10 +84,22 @@
           "australia": "Australia"
         }
       }
+    },
+    "label": {
+      "totalTaxes": "Total before taxes",
+      "night": "night",
+      "pickDate": "Pick a date",
+      "checkIn": "Check In",
+      "checkOut": "Check Out",
+      "guest": "Guests"
     }
   },
   "feedback": {
-    "error": {},
+    "error": {
+      "maximumGuest": "The maximum number of guests is {number}",
+      "notLogin": "Please login to continue",
+      "notFound": "Not found {name}"
+    },
     "success": {
       "login": "Login successful!",
       "register": "Register successful!"
@@ -1402,6 +1416,38 @@
     },
     "error": {
       "title": "Something went wrong!"
+    },
+    "room": {
+      "whereSleep": {
+        "title": "Where you'll sleep",
+        "items": {
+          "bedroom1": {
+            "title": "Bedroom 1",
+            "description": "1 queen bed, 1 single bed",
+            "fileName": "bedroom1.png"
+          },
+          "bedroom2": {
+            "title": "Bedroom 2",
+            "description": "2 queen beds, 1 single bed",
+            "fileName": "bedroom2.png"
+          }
+        }
+      },
+      "whatOffers": {
+        "title": "What this place offers",
+        "items": {
+          "oceanView": "Ocean view",
+          "airVent": "Air conditioning",
+          "wifi": "Wifi",
+          "wavesLadder": "Dedicated workspace"
+        }
+      },
+      "where": {
+        "title": "What this place offers"
+      },
+      "meetHost": {
+        "title": "Meet your Host"
+      }
     }
   },
   "metaData": {
