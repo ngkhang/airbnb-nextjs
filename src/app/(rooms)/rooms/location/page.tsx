@@ -29,7 +29,10 @@ export default function LocationPage() {
 
   const { data: rooms } = useQuery({
     queryKey: [queryKeys.room, locationId],
-    queryFn: () => roomService.getByLocationId(locationId),
+    queryFn: () =>
+      Number(locationId) === 0
+        ? roomService.getAll()
+        : roomService.getByLocationId(locationId),
     enabled: !!locationId,
   });
 
