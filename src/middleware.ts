@@ -4,14 +4,17 @@ import { KEY } from '@/constants/key';
 import ROUTES from '@/constants/routes';
 
 // 1. Specify protected and public routes
-const protectedPaths = ['/user', '/admin'];
+const protectedPaths = ['/users', '/admin'];
 const authPaths = ['/login', '/register'];
 
 export function middleware(request: NextRequest) {
   // 2. Check if the current route is protected or public
   const path = request.nextUrl.pathname;
 
-  const isProtectedPath = protectedPaths.includes(path);
+  const isProtectedPath =
+    typeof protectedPaths.find((pathProtect) =>
+      path.startsWith(pathProtect)
+    ) === 'string';
   const isAuthPath = authPaths.includes(path);
 
   const token = request.cookies.get(KEY.TOKEN)?.value;
@@ -23,7 +26,9 @@ export function middleware(request: NextRequest) {
 
   // 5. Redirect to User's Dashboard if account is logged
   if (isAuthPath && token)
-    return NextResponse.redirect(new URL('users/dashboard', request.nextUrl));
+    return NextResponse.redirect(
+      new URL(ROUTES.USER.DASHBOARD, request.nextUrl)
+    );
 
   // NOTE: Role-based access: Account: USER | ADMIN
   if (roleAccount === 'USER' && path.startsWith('/admin')) {

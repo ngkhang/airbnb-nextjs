@@ -6,6 +6,8 @@ export const api = {
   users: {
     getAll: '/users',
     getById: (userId: number) => `/users/${userId}`,
+    uploadAvatar: '/users/upload-avatar',
+    updateProfile: (userId: number | string) => `/users/${userId}`,
   },
   rooms: {
     getAll: '/phong-thue',
@@ -22,7 +24,8 @@ export const api = {
     getById: (locationId: number) => `/vi-tri/${locationId}`,
   },
   booking: {
-    getByUserId: (userId: number) => `/dat-phong/lay-theo-nguoi-dung/${userId}`,
+    getByUserId: (userId: number | string) =>
+      `/dat-phong/lay-theo-nguoi-dung/${userId}`,
   },
   nextServer: {
     login: 'auth/login',

@@ -48,7 +48,7 @@ export default function AccountPopover() {
                   <div key={key}>
                     <Link
                       className='inline-block w-full py-2 pl-6 pr-16 hover:bg-[#EBEBEB]'
-                      href={`${item.url}/${user.id}`}
+                      href={item.url}
                     >
                       {item.title}
                     </Link>
