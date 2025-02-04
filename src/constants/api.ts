@@ -5,9 +5,10 @@ export const api = {
   },
   users: {
     getAll: '/users',
-    getById: (userId: number) => `/users/${userId}`,
+    getById: (userId: number | string) => `/users/${userId}`,
     uploadAvatar: '/users/upload-avatar',
     updateProfile: (userId: number | string) => `/users/${userId}`,
+    delete: (userId: number | string) => `users?id=${userId}`,
   },
   rooms: {
     getAll: '/phong-thue',

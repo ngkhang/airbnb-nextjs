@@ -18,7 +18,12 @@
       "updatePassword": "Update password",
       "updateProfile": "Update profile",
       "uploadAvatar": "Upload",
-      "account": "Account"
+      "account": "Account",
+      "edit": "Edit",
+      "delete": "Delete",
+      "view": "View",
+      "filterByName": "Filter by full name",
+      "add": "Add a new {name}"
     },
     "inputs": {
       "email": {
@@ -108,21 +113,24 @@
       "checkIn": "Check In",
       "checkOut": "Check Out",
       "guest": "Guests",
-      "notifications": "Notifications"
+      "notifications": "Notifications",
+      "create": "Create a new {name}"
     }
   },
   "feedback": {
     "error": {
       "maximumGuest": "The maximum number of guests is {number}",
       "notLogin": "Please login to continue",
-      "notFound": "Not found {name}"
+      "notFound": "Not found {name}",
+      "noResult": "No results"
     },
     "success": {
       "login": "Login successful!",
       "register": "Register successful!",
       "updatePassword": "Feature will service",
       "updateAvatar": "Update avatar success",
-      "updateProfile": "Update profile success"
+      "updateProfile": "Update profile success",
+      "delete": "Delete success"
     },
     "loading": {
       "default": "Loading...",

@@ -37,6 +37,22 @@ const userService = {
     const data = await http.get<EntitySuccessPayload<User[]>>(api.users.getAll);
     return data.payload;
   },
+  getById: async (
+    userId: number | string
+  ): Promise<EntitySuccessPayload<User>> => {
+    const data = await http.get<EntitySuccessPayload<User>>(
+      api.users.getById(userId)
+    );
+    return data.payload;
+  },
+  delete: async (
+    userId: string | number
+  ): Promise<EntitySuccessPayload<string>> => {
+    const data = await http.delete<EntitySuccessPayload<string>>(
+      api.users.delete(userId)
+    );
+    return data.payload;
+  },
 };
 
 export default userService;

@@ -5,32 +5,26 @@ import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 
 import { queryKeys } from '@/constants/queryKeys';
-import ROUTES from '@/constants/routes';
 import getQueryClient from '@/lib/get-query-client';
-import type { RegisterFormType } from '@/schemas/auth.schema';
-import authService from '@/services/auth.service';
+import userService from '@/services/user.service';
 
 import useNotification from '../use-notification';
-
 const queryClient = getQueryClient();
 
-export default function useRegister() {
+export default function useDeleteUser() {
   const router = useRouter();
-  const { show } = useNotification();
   const t = useTranslations();
+  const { show } = useNotification();
 
   return useMutation({
-    mutationKey: [queryKeys.user, 'register'],
-    // Send form data login
-    mutationFn: async (formData: RegisterFormType) =>
-      await authService.register(formData),
-    onSuccess: async () => {
-      // Get notification and redirect to login page
-      show(t('feedback.success.register'), {
+    mutationKey: [queryKeys.user, 'delete'],
+    mutationFn: async (userId: number | string) =>
+      await userService.delete(userId),
+    onSuccess: async (result) => {
+      show(t('feedback.success.delete'), {
         type: 'success',
         onClose: () => {
           queryClient.invalidateQueries({ queryKey: [queryKeys.user] });
-          router.push(ROUTES.AUTH.LOGIN);
           router.refresh();
         },
       });

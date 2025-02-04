@@ -58,6 +58,7 @@ import {
   MapPinHouse,
   Users,
   Bell,
+  Ellipsis,
   type LucideProps,
 } from 'lucide-react';
 
@@ -131,6 +132,7 @@ const IconComponents = {
   mapPinHouse: MapPinHouse,
   users: Users,
   bell: Bell,
+  ellipsis: Ellipsis,
   airbnb: Airbnb,
   airbnbBlack: AirbnbBlack,
   airbnbSymbol: AirbnbSymbol,
