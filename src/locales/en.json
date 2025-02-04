@@ -23,6 +23,7 @@
       "delete": "Delete",
       "view": "View",
       "filterByName": "Filter by full name",
+      "filterLocation": "Filter by location name",
       "add": "Add a new {name}"
     },
     "inputs": {
@@ -104,6 +105,22 @@
           "thailand": "Thailand",
           "australia": "Australia"
         }
+      },
+      "tenViTri": {
+        "label": "Location",
+        "placeholder": ""
+      },
+      "tinhThanh": {
+        "label": "Provide",
+        "placeholder": ""
+      },
+      "quocGia": {
+        "label": "National",
+        "placeholder": ""
+      },
+      "hinhAnh": {
+        "label": "Image",
+        "placeholder": ""
       }
     },
     "label": {
@@ -130,7 +147,8 @@
       "updatePassword": "Feature will service",
       "updateAvatar": "Update avatar success",
       "updateProfile": "Update profile success",
-      "delete": "Delete success"
+      "delete": "Delete success",
+      "createLocation": "Create success"
     },
     "loading": {
       "default": "Loading...",
@@ -1712,6 +1730,26 @@
         },
         "listNewUser": {
           "title": "Recent Users"
+        }
+      }
+    },
+    "location": {
+      "fields": {
+        "tenViTri": {
+          "title": "Location",
+          "textEmpty": "Not provide"
+        },
+        "tinhThanh": {
+          "title": "Provide",
+          "textEmpty": "Not provide"
+        },
+        "quocGia": {
+          "title": "National",
+          "textEmpty": "Not provide"
+        },
+        "hinhAnh": {
+          "title": "Image",
+          "textEmpty": "Not provide"
         }
       }
     }

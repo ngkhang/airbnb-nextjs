@@ -28,7 +28,7 @@ import {
   SelectValue,
 } from '../ui/select';
 
-export type InputType = 'text' | 'email' | 'password' | 'select';
+export type InputType = 'text' | 'email' | 'password' | 'select' | 'file';
 export interface SelectOption {
   value: string;
   label: string;
@@ -96,6 +96,11 @@ function renderInput<T extends z.ZodType>({
           ))}
         </SelectContent>
       </Select>
+    ),
+    file: (
+      <FormControl>
+        <Input type='file' placeholder={placeholder} {...field} />
+      </FormControl>
     ),
   };
 

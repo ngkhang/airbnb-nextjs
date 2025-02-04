@@ -22,7 +22,9 @@ export const api = {
   },
   location: {
     getAll: '/vi-tri',
-    getById: (locationId: number) => `/vi-tri/${locationId}`,
+    getById: (locationId: number | string) => `/vi-tri/${locationId}`,
+    create: '/vi-tri',
+    delete: (locationId: number | string) => `vi-tri/${locationId}`,
   },
   booking: {
     getByUserId: (userId: number | string) =>
