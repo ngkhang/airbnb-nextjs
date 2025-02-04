@@ -16,6 +16,12 @@ const ROUTES = {
     UPDATE_PROFILE: '/users/account-settings/update-profile',
     CHANGE_PASSWORD: '/users/account-settings/change-password',
   },
+  ADMIN: {
+    DASHBOARD: '/admin/dashboard',
+    USERS: '/admin/management/users',
+    ROOMS: '/admin/management/rooms',
+    LOCATIONS: '/admin/management/locations',
+  },
   ROOM: {
     DETAIL: (roomId: string | number) => `/rooms/${roomId}`,
     LOCATION: (locationId: string | number) =>

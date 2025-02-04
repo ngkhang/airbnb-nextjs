@@ -24,16 +24,28 @@ export function middleware(request: NextRequest) {
   if (isProtectedPath && !token)
     return NextResponse.redirect(new URL(ROUTES.AUTH.LOGIN, request.nextUrl));
 
-  // 5. Redirect to User's Dashboard if account is logged
-  if (isAuthPath && token)
-    return NextResponse.redirect(
-      new URL(ROUTES.USER.DASHBOARD, request.nextUrl)
-    );
+  // 5. Role-based access: Account: USER | ADMIN
+  if (roleAccount === 'USER') {
+    if (isAuthPath && token)
+      return NextResponse.redirect(
+        new URL(ROUTES.USER.DASHBOARD, request.nextUrl)
+      );
 
-  // NOTE: Role-based access: Account: USER | ADMIN
-  if (roleAccount === 'USER' && path.startsWith('/admin')) {
+    if (!path.startsWith('/users'))
+      return NextResponse.rewrite(new URL('/not-found', request.url));
     // TODO: Create forbidden page
-    return NextResponse.rewrite(new URL('/not-found', request.url));
+  }
+
+  if (roleAccount === 'ADMIN') {
+    if (isAuthPath && token)
+      return NextResponse.redirect(
+        new URL(ROUTES.ADMIN.DASHBOARD, request.nextUrl)
+      );
+
+    if (path === '/admin' || !path.startsWith('/admin'))
+      return NextResponse.redirect(
+        new URL(ROUTES.ADMIN.DASHBOARD, request.nextUrl)
+      );
   }
 
   // 6. Create a new response with headers

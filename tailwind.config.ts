@@ -12,9 +12,9 @@ const config: Config = {
     container: {
       center: true,
       padding: {
-        DEFAULT: '1.5rem', // 24px
-        md: '2.5rem', // 40px
-        '2xl': '5rem', // 80px
+        DEFAULT: '1.5rem',
+        md: '2.5rem',
+        '2xl': '5rem',
       },
     },
     extend: {
@@ -74,6 +74,16 @@ const config: Config = {
           '4': 'hsl(var(--chart-4))',
           '5': 'hsl(var(--chart-5))',
         },
+        sidebar: {
+          DEFAULT: 'hsl(var(--sidebar-background))',
+          foreground: 'hsl(var(--sidebar-foreground))',
+          primary: 'hsl(var(--sidebar-primary))',
+          'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
+          accent: 'hsl(var(--sidebar-accent))',
+          'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
+          border: 'hsl(var(--sidebar-border))',
+          ring: 'hsl(var(--sidebar-ring))',
+        },
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -89,3 +99,4 @@ const config: Config = {
   plugins: [TailwindAnimate],
 };
 export default config;
+

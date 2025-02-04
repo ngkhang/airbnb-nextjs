@@ -33,6 +33,10 @@ const userService = {
     );
     return data.payload;
   },
+  getAll: async (): Promise<EntitySuccessPayload<User[]>> => {
+    const data = await http.get<EntitySuccessPayload<User[]>>(api.users.getAll);
+    return data.payload;
+  },
 };
 
 export default userService;

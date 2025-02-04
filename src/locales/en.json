@@ -17,7 +17,8 @@
       "save": "Save",
       "updatePassword": "Update password",
       "updateProfile": "Update profile",
-      "uploadAvatar": "Upload"
+      "uploadAvatar": "Upload",
+      "account": "Account"
     },
     "inputs": {
       "email": {
@@ -106,7 +107,8 @@
       "pickDate": "Pick a date",
       "checkIn": "Check In",
       "checkOut": "Check Out",
-      "guest": "Guests"
+      "guest": "Guests",
+      "notifications": "Notifications"
     }
   },
   "feedback": {
@@ -1666,6 +1668,43 @@
       "updateProfile": {
         "title": "Update profile",
         "description": ""
+      }
+    },
+    "admin": {
+      "shared": {
+        "sidebar": {
+          "navHeader": {
+            "title": "Airbnb",
+            "id": "DASHBOARD",
+            "description": "Admin Management"
+          },
+          "navMain": {
+            "users": "User",
+            "rooms": "Room",
+            "locations": "Location"
+          }
+        },
+        "pageTitle": {
+          "dashboard": "Dashboard",
+          "users": "User Management",
+          "rooms": "Room Management",
+          "locations": "Location Management"
+        }
+      },
+      "dashboard": {
+        "title": "Dashboard",
+        "cardOverview": {
+          "mapPinned": "Total location",
+          "mapPinHouse": "Total Room",
+          "users": "Total User",
+          "shield": "Total Admin"
+        },
+        "overviewChart": {
+          "title": "Overview"
+        },
+        "listNewUser": {
+          "title": "Recent Users"
+        }
       }
     }
   },
