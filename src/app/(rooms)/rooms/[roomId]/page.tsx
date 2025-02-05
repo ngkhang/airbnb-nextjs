@@ -1,6 +1,7 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
+import { format } from 'date-fns';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
@@ -15,6 +16,7 @@ import { Separator } from '@/components/ui/separator';
 import { queryKeys } from '@/constants/queryKeys';
 import { getPathFileAssets } from '@/helpers/fileAssets';
 import { cn } from '@/lib/utils';
+import commentService from '@/services/comment.service';
 import roomService from '@/services/room.service';
 
 import ReserveForm from './component/ReserveForm';
@@ -23,6 +25,27 @@ const keyMap = {
   bedRooms: ['bedroom1', 'bedroom2'],
   whatOffer: ['airVent', 'airVent', 'wifi', 'wavesLadder'],
 } as const;
+
+const formatDateComment = (dateString: string | Date): string => {
+  if (
+    dateString.toString().includes('T') &&
+    dateString.toString().endsWith('Z')
+  )
+    return format(dateString, 'dd/LL/yyyy');
+
+  if (dateString.toString().includes('/')) {
+    return dateString.toString().split(' ')[0];
+  }
+
+  const date = new Date(dateString);
+  if (isNaN(date.getTime())) return dateString.toString();
+
+  const day = date.getDate().toString().padStart(2, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const year = date.getFullYear();
+
+  return `${day}/${month}/${year}`;
+};
 
 export default function RoomDetailPage() {
   const roomId = usePathname().replace('/rooms/', '');
@@ -34,6 +57,12 @@ export default function RoomDetailPage() {
   } = useQuery({
     queryKey: [queryKeys.room, roomId],
     queryFn: () => roomService.getByRoomId(roomId),
+    enabled: !!roomId,
+  });
+
+  const { data: listComment } = useQuery({
+    queryKey: [queryKeys.comment, roomId],
+    queryFn: () => commentService.getByRoomId(roomId),
     enabled: !!roomId,
   });
 
@@ -152,13 +181,28 @@ export default function RoomDetailPage() {
                 <p>Entire loft in George Town, Malaysia</p>
                 <p>12 guests2 bedrooms5 beds2 baths</p>
                 <div className='flex items-center gap-2 text-base font-medium'>
-                  <div className='flex items-center gap-2'>
-                    <Icon name='star' size='18' className='fill-black' />
-                    <span>4.89</span>
-                  </div>
-                  <span> · </span>
+                  {listComment && (
+                    <>
+                      <div className='flex items-center gap-2'>
+                        <Icon name='star' size='18' className='fill-black' />
+                        <span>
+                          {Math.round(
+                            listComment.content.reduce(
+                              (total, curr) => (total += curr.saoBinhLuan),
+                              0
+                            ) / listComment.content.length
+                          )}
+                        </span>
+                      </div>
+                      <span> · </span>
 
-                  <span className='font-medium underline'>361 reviews</span>
+                      <span className='font-medium underline'>
+                        {listComment.content.length > 1
+                          ? `${listComment.content.length} reviews`
+                          : `${listComment.content.length} review`}
+                      </span>
+                    </>
+                  )}
                 </div>
               </div>
 
@@ -279,91 +323,135 @@ export default function RoomDetailPage() {
 
             {/* Ratings */}
             <div className='mb-3 flex items-center gap-2 text-base font-medium md:text-2xl lg:text-4xl'>
-              <div className='flex items-center gap-2'>
-                <Icon name='star' size='18' className='fill-black' />
-                <span>4.89</span>
-              </div>
-              <span> · </span>
-              <span className='font-medium underline lg:no-underline'>
-                361 reviews
-              </span>
+              {listComment && (
+                <>
+                  <div className='flex items-center gap-2'>
+                    <Icon name='star' size='18' className='fill-black' />
+                    <span>
+                      {Math.round(
+                        listComment.content.reduce(
+                          (total, curr) => (total += curr.saoBinhLuan),
+                          0
+                        ) / listComment.content.length
+                      )}
+                    </span>
+                  </div>
+                  <span> · </span>
+
+                  <span className='font-medium underline lg:no-underline'>
+                    {listComment.content.length > 1
+                      ? `${listComment.content.length} reviews`
+                      : `${listComment.content.length} review`}
+                  </span>
+                </>
+              )}
             </div>
 
             {/* Comments */}
             <div>
-              <ScrollArea className='w-full whitespace-nowrap rounded-md md:hidden'>
-                <div className='flex w-max space-x-4'>
-                  {[1, 2, 3, 4].map((item) => (
-                    <Card
-                      key={item}
-                      className='min-w-60 max-w-80 text-sm font-medium'
-                    >
-                      <CardContent className='w-full p-3'>
-                        <div className='mb-2 flex items-center gap-2'>
-                          <Icon name='star' size={18} className='fill-black' />
-                          <span> · </span>
-                          <span>3 weeks ago</span>
-                        </div>
-                        <p className='mb-3 line-clamp-3 whitespace-pre-line text-base font-normal'>
-                          The view is as posted in picture, stunning. House was
-                          clean and tidy, what I appreciated the most is
-                          extremely clear instructions for stress-free
-                        </p>
-                        <div className='flex items-center gap-3'>
-                          <Avatar className='size-8'>
-                            <AvatarImage
-                              src='https://github.com/shadcn.png'
-                              alt='@shadcn'
+              {listComment && (
+                <>
+                  <ScrollArea className='w-full whitespace-nowrap rounded-md md:hidden'>
+                    <div className='flex w-max space-x-4'>
+                      {listComment.content.map((comment) => (
+                        <Card
+                          key={comment.id}
+                          className='min-w-60 max-w-80 text-sm font-medium'
+                        >
+                          <CardContent className='w-full p-3'>
+                            <div className='mb-2 flex items-center gap-2'>
+                              <span className='text-lg'>
+                                {' '}
+                                {comment.saoBinhLuan}{' '}
+                              </span>
+                              <Icon
+                                name='star'
+                                size={18}
+                                className='fill-black'
+                              />
+                              <span> · </span>
+                              <span>
+                                {formatDateComment(comment.ngayBinhLuan)}
+                              </span>
+                            </div>
+                            <p className='mb-3 line-clamp-3 whitespace-pre-line text-base font-normal'>
+                              {comment.noiDung}
+                            </p>
+                            <div className='flex items-center gap-3'>
+                              <Avatar className='size-8'>
+                                <AvatarImage
+                                  src={comment.avatar}
+                                  alt={comment.tenNguoiBinhLuan}
+                                />
+                                <AvatarFallback>CN</AvatarFallback>
+                              </Avatar>
+
+                              <div>
+                                <p className='font-semibold'>
+                                  {comment.tenNguoiBinhLuan}
+                                </p>
+                                <p className='text-[#6A6A6A]'>
+                                  ... month on Airbnb
+                                </p>
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      ))}
+                    </div>
+                    <ScrollBar orientation='horizontal' />
+                  </ScrollArea>
+
+                  <div className='hidden gap-4 md:grid lg:grid-cols-2 2xl:grid-cols-3'>
+                    {listComment.content.map((comment) => (
+                      <Card
+                        key={comment.id}
+                        className='border-none shadow-none'
+                      >
+                        <CardHeader className='mb-2 rounded-2xl p-2'>
+                          <CardTitle className='flex items-center gap-2'>
+                            <Avatar className='size-8'>
+                              <AvatarImage
+                                src={comment.avatar}
+                                alt={comment.tenNguoiBinhLuan}
+                              />
+                              <AvatarFallback>CN</AvatarFallback>
+                            </Avatar>
+
+                            <div>
+                              <p className='font-semibold'>
+                                {comment.tenNguoiBinhLuan}
+                              </p>
+                              <p className='text-[#6A6A6A]'>
+                                ... month on Airbnb
+                              </p>
+                            </div>
+                          </CardTitle>
+                        </CardHeader>
+                        <CardContent className='p-2'>
+                          <div className='mb-2 flex items-center gap-2'>
+                            <span className='text-lg'>
+                              {comment.saoBinhLuan}
+                            </span>
+                            <Icon
+                              name='star'
+                              size={18}
+                              className='fill-black'
                             />
-                            <AvatarFallback>CN</AvatarFallback>
-                          </Avatar>
-
-                          <div>
-                            <p className='font-semibold'>Nazrin</p>
-                            <p className='text-[#6A6A6A]'>1 month on Airbnb</p>
+                            <span> · </span>
+                            <span>
+                              {formatDateComment(comment.ngayBinhLuan)}
+                            </span>
                           </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-                <ScrollBar orientation='horizontal' />
-              </ScrollArea>
-
-              <div className='hidden gap-4 md:grid lg:grid-cols-2 2xl:grid-cols-3'>
-                {[1, 2, 3, 4].map((item) => (
-                  <Card key={item} className='border-none shadow-none'>
-                    <CardHeader className='mb-2 rounded-2xl p-2'>
-                      <CardTitle className='flex items-center gap-2'>
-                        <Avatar className='size-8'>
-                          <AvatarImage
-                            src='https://github.com/shadcn.png'
-                            alt='@shadcn'
-                          />
-                          <AvatarFallback>CN</AvatarFallback>
-                        </Avatar>
-
-                        <div>
-                          <p className='font-semibold'>Nazrin</p>
-                          <p className='text-[#6A6A6A]'>1 month on Airbnb</p>
-                        </div>
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className='p-2'>
-                      <div className='mb-2 flex items-center gap-2'>
-                        <Icon name='star' size={18} className='fill-black' />
-                        <span> · </span>
-                        <span>3 weeks ago</span>
-                      </div>
-                      <p className='mb-3 line-clamp-3 whitespace-pre-line text-base font-normal'>
-                        The view is as posted in picture, stunning. House was
-                        clean and tidy, what I appreciated the most is extremely
-                        clear instructions for stress-free
-                      </p>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
+                          <p className='mb-3 line-clamp-3 whitespace-pre-line text-base font-normal'>
+                            {comment.noiDung}
+                          </p>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                </>
+              )}
             </div>
 
             <Separator className='my-6' />

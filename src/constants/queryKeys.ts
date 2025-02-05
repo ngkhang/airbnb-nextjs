@@ -3,4 +3,5 @@ export const queryKeys = {
   room: 'room',
   booking: 'booking',
   user: 'user',
+  comment: 'comment',
 };

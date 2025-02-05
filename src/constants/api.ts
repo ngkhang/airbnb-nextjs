@@ -31,6 +31,10 @@ export const api = {
       `/dat-phong/lay-theo-nguoi-dung/${userId}`,
     create: '/dat-phong',
   },
+  comment: {
+    getByRoomId: (roomId: number | string) =>
+      `/binh-luan/lay-binh-luan-theo-phong/${roomId}`,
+  },
   nextServer: {
     login: 'auth/login',
     logout: 'auth/logout',
