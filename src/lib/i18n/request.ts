@@ -1,4 +1,5 @@
 import deepmerge from 'deepmerge';
+import type { AbstractIntlMessages } from 'next-intl';
 import { getRequestConfig } from 'next-intl/server';
 
 import { getLocaleFromCookie } from '@/services/locale.service';
@@ -10,7 +11,7 @@ import { i18Config, type Locale } from './config';
  */
 async function getMessagesForLocale(
   locale: Locale
-): Promise<{ [key: string]: IntlMessages }> {
+): Promise<AbstractIntlMessages> {
   try {
     return (await import(`../../locales/${locale}.json`)).default;
   } catch (error) {
@@ -19,9 +20,7 @@ async function getMessagesForLocale(
   }
 }
 
-export default getRequestConfig(async () => {
-  // Provide a static locale, fetch a user setting,
-  // read from `cookies()`, `headers()`, etc.
+export default getRequestConfig(async ({ locale: _locale }) => {
   const localeCookie = await getLocaleFromCookie();
 
   const locale = (() => {
@@ -38,15 +37,17 @@ export default getRequestConfig(async () => {
 
     const messages = deepmerge(defaultMessages, localeMessage);
     return {
-      locale,
       messages,
-      timeZone: 'UTC',
+      // The timeZone and now parameters are optional
+      timeZone: 'Asia/Ho_Chi_Minh',
+      now: new Date(),
     };
   } catch (error) {
     console.error('Failed to load i18n configuration:', error);
     return {
-      locale: i18Config.defaultLocale,
       messages: defaultMessages,
+      timeZone: 'Asia/Ho_Chi_Minh',
+      now: new Date(),
     };
   }
 });
