@@ -31,6 +31,7 @@ interface DrawerDialogProps {
     title: string;
     className?: string;
   };
+  width?: string;
   children: React.ReactNode;
 }
 
@@ -39,6 +40,7 @@ export default function DrawerDialog({
   description = '',
   children,
   button,
+  width = '',
 }: DrawerDialogProps) {
   const [open, setOpen] = useState<boolean>(false);
   const isDesktop = useMediaQuery('(min-width: 768px)');
@@ -51,7 +53,9 @@ export default function DrawerDialog({
             {button.title}
           </Button>
         </DialogTrigger>
-        <DialogContent className='sm:max-w-[425px]'>
+        <DialogContent
+          className={cn('h-2/3 overflow-y-scroll sm:max-w-[425px]', width)}
+        >
           <DialogHeader>
             <DialogTitle>{title}</DialogTitle>
             <DialogDescription>{description}</DialogDescription>
@@ -63,13 +67,13 @@ export default function DrawerDialog({
   }
 
   return (
-    <Drawer open={open} onOpenChange={setOpen}>
+    <Drawer open={open} onOpenChange={setOpen} direction='bottom'>
       <DrawerTrigger asChild>
         <Button variant='outline' className={cn(button.className)}>
           {button.title}
         </Button>
       </DrawerTrigger>
-      <DrawerContent>
+      <DrawerContent className='mt-14'>
         <DrawerHeader className='text-left'>
           <DrawerTitle>{title}</DrawerTitle>
           <DrawerDescription>{description}</DrawerDescription>

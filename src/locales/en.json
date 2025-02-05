@@ -148,7 +148,8 @@
       "updateAvatar": "Update avatar success",
       "updateProfile": "Update profile success",
       "delete": "Delete success",
-      "createLocation": "Create success"
+      "createLocation": "Create success",
+      "createRoom": "Create success"
     },
     "loading": {
       "default": "Loading...",
@@ -1493,6 +1494,26 @@
       },
       "meetHost": {
         "title": "Meet your Host"
+      },
+      "details": {
+        "tenPhong": "Room",
+        "khach": "Guest",
+        "phongNgu": "Bedroom",
+        "giuong": "Bed",
+        "phongTam": "Bathroom",
+        "moTa": "Description",
+        "giaTien": "Price",
+        "mayGiat": "boolean",
+        "banLa": "boolean",
+        "tivi": "Tivi",
+        "dieuHoa": "Condition",
+        "wifi": "Wifi",
+        "bep": "boolean",
+        "doXe": "Parking",
+        "hoBoi": "Pool",
+        "banUi": "boolean",
+        "hinhAnh": "Image",
+        "maViTri": "Location Id"
       }
     },
     "user": {
@@ -1771,5 +1792,19 @@
       "title": "Register",
       "description": ""
     }
+  },
+  "common": {
+    "equipments": {
+      "mayGiat": "Máy giặt",
+      "banLa": "Bàn là",
+      "tivi": "Tivi",
+      "dieuHoa": "Điều hòa",
+      "wifi": "Wifi",
+      "bep": "Bếp",
+      "doXe": "Đỗ xe",
+      "hoBoi": "Hồ bơi",
+      "banUi": "Bàn ủi"
+    },
+    "textEmpty": "Not provide"
   }
 }

@@ -23,6 +23,21 @@ const roomService = {
     );
     return data.payload;
   },
+  delete: async (
+    roomId: string | number
+  ): Promise<EntitySuccessPayload<string>> => {
+    const data = await http.delete<EntitySuccessPayload<string>>(
+      api.rooms.delete(roomId)
+    );
+    return data.payload;
+  },
+  create: async (body: Room): Promise<EntitySuccessPayload<Room>> => {
+    const data = await http.post<EntitySuccessPayload<Room>>(
+      api.rooms.create,
+      body
+    );
+    return data.payload;
+  },
 };
 
 export default roomService;

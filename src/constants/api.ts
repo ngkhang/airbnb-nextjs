@@ -17,8 +17,8 @@ export const api = {
       `/phong-thue/lay-phong-theo-vi-tri?maViTri=${locationId}`,
     getPagination: (pageIndex: number, pageSize: number) =>
       `/phong-thue/phan-trang-tim-kiem?pageIndex=${pageIndex}&pageSize=${pageSize}`,
-    add: '/phong-thue',
-    delete: '/phong-thue',
+    create: '/phong-thue',
+    delete: (roomId: number | string) => `/phong-thue/${roomId}`,
   },
   location: {
     getAll: '/vi-tri',
