@@ -149,7 +149,8 @@
       "updateProfile": "Update profile success",
       "delete": "Delete success",
       "createLocation": "Create success",
-      "createRoom": "Create success"
+      "createRoom": "Create success",
+      "createBooking": "Booking success"
     },
     "loading": {
       "default": "Loading...",

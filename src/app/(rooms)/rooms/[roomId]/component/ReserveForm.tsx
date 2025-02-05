@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 
 import Icon from '@/components/icons/icon';
+import Spinner from '@/components/icons/spinner';
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
 import {
@@ -31,6 +32,7 @@ import {
 } from '@/components/ui/popover';
 import { Separator } from '@/components/ui/separator';
 import ROUTES from '@/constants/routes';
+import { useCreateBooking } from '@/hooks/use-booking';
 import useNotification from '@/hooks/use-notification';
 import useZodForm from '@/hooks/use-zod-form';
 import { cn, formatCurrency } from '@/lib/utils';
@@ -63,6 +65,7 @@ export default function ReserveForm({ roomDetail }: ReserveFormProps) {
   const { show } = useNotification();
   const { user } = useUserStore();
   const router = useRouter();
+  const { mutateAsync: createBooking, isPending } = useCreateBooking();
 
   const reserveForm = useZodForm(PreReserveSchema, {
     defaultValues: {
@@ -73,7 +76,7 @@ export default function ReserveForm({ roomDetail }: ReserveFormProps) {
     },
   });
 
-  function onSubmitBooking(data: PreReserveType) {
+  async function onSubmitBooking(data: PreReserveType) {
     if (!user)
       show(t('feedback.error.notLogin'), {
         type: 'error',
@@ -84,7 +87,7 @@ export default function ReserveForm({ roomDetail }: ReserveFormProps) {
         type: 'error',
       });
     else
-      console.log('🚀 ~ onSubmitBooking ~ data:', {
+      await createBooking({
         ...data,
         maNguoiDung: user.id,
       });
@@ -317,7 +320,14 @@ export default function ReserveForm({ roomDetail }: ReserveFormProps) {
               type='submit'
               className='col-span-full mt-7 py-6 text-base lg:text-xl'
             >
-              {t('ui.buttons.reverse')}
+              {isPending ? (
+                <>
+                  <Spinner />
+                  {t('ui.buttons.submitting')}
+                </>
+              ) : (
+                <>{t('ui.buttons.reverse')}</>
+              )}
             </Button>
           </form>
         </Form>

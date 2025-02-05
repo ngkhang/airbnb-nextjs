@@ -29,6 +29,7 @@ export const api = {
   booking: {
     getByUserId: (userId: number | string) =>
       `/dat-phong/lay-theo-nguoi-dung/${userId}`,
+    create: '/dat-phong',
   },
   nextServer: {
     login: 'auth/login',
