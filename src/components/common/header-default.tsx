@@ -1,17 +1,27 @@
+'use client';
+
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
-import React from 'react';
+import { useLocale, useTranslations } from 'next-intl';
+import React, { startTransition } from 'react';
 
 import ROUTES from '@/constants/routes';
+import type { Locale } from '@/lib/i18n/config';
 import { cn } from '@/lib/utils';
+import { setLocaleToCookie } from '@/services/locale.service';
 
 import AccountPopover from '../account-popover';
 import Icon from '../icons/icon';
 import SearchBar from '../search/search-bar';
 import { Button } from '../ui/button';
-
 export default function HeaderDefault() {
+  const locale = useLocale();
   const t = useTranslations('layout.header');
+  const handleChangeLang = async () => {
+    const newLang: Locale = locale === 'en' ? 'vi' : 'en';
+    startTransition(async () => {
+      await setLocaleToCookie(newLang);
+    });
+  };
 
   return (
     <header>
@@ -42,10 +52,10 @@ export default function HeaderDefault() {
               {t('host')}
             </Button>
 
-            {/* TODO: Handle change language */}
             <Button
               className='size-10 rounded-full border-none shadow-none hover:text-[#6A6A6A]'
               variant='outline'
+              onClick={handleChangeLang}
             >
               <Icon name='globe' />
             </Button>
