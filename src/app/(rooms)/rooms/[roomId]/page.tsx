@@ -322,11 +322,10 @@ export default function RoomDetailPage() {
             <Separator className='my-6 hidden lg:block' />
 
             {/* Ratings */}
-            <div className='mb-3 flex items-center gap-2 text-base font-medium md:text-2xl lg:text-4xl'>
+            <div className='display-center mb-3 flex-col gap-2 text-base font-medium md:text-2xl lg:text-4xl'>
               {listComment && (
                 <>
                   <div className='flex items-center gap-2'>
-                    <Icon name='star' size='18' className='fill-black' />
                     <span>
                       {Math.round(
                         listComment.content.reduce(
@@ -335,14 +334,13 @@ export default function RoomDetailPage() {
                         ) / listComment.content.length
                       )}
                     </span>
+                    <Icon name='star' size='18' className='fill-black' />
                   </div>
-                  <span> · </span>
 
-                  <span className='font-medium underline lg:no-underline'>
-                    {listComment.content.length > 1
-                      ? `${listComment.content.length} reviews`
-                      : `${listComment.content.length} review`}
-                  </span>
+                  <p className='text-sm font-normal underline lg:no-underline'>
+                    This home is a guest favorite based on ratings, reviews, and
+                    reliability
+                  </p>
                 </>
               )}
             </div>
