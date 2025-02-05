@@ -30,10 +30,6 @@ export function middleware(request: NextRequest) {
       return NextResponse.redirect(
         new URL(ROUTES.USER.DASHBOARD, request.nextUrl)
       );
-
-    if (!path.startsWith('/users'))
-      return NextResponse.rewrite(new URL('/not-found', request.url));
-    // TODO: Create forbidden page
   }
 
   if (roleAccount === 'ADMIN') {
